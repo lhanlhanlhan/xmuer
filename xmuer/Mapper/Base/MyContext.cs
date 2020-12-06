@@ -15,6 +15,9 @@ namespace xmuer.Mapper.Base
 
 		public DbSet<Album> Albums { get; set; }
 
+		public DbSet<User> Users { get; set; }
+
+		public DbSet<UserInfo> UserInfos { get; set; }
 
 	}
 }

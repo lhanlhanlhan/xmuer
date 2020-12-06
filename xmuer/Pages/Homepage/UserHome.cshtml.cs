@@ -5,36 +5,34 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using xmuer.Entities.Home;
+using xmuer.Mapper.Base;
 
 namespace xmuer.Pages.Homepage
 {
     public class UserHomeModel : PageModel
     {
-        private String userName;
-        private String userId;
+        private readonly MyContext _db;
+        private User user;
+
+        public UserHomeModel(MyContext db)
+        {
+            _db = db;
+        }
 
         public string WelcomeMessage { get; set; }
 
         public void OnGet()
         {
             // 获取当前登录的用户
-            userName = HttpContext.Session.GetString("userName");
-            userId = HttpContext.Session.GetString("userId");
-            if (userName != null)
-            {
-                WelcomeMessage = userName;
-            }
+            //user = UserService.GetUserByID(Convert.ToInt32(HttpContext.Session.GetString("userId")));
+            user = _db.Users.Find(Convert.ToInt32("1"));
+            WelcomeMessage = user.userName;
             //else
             //{
             //    RedirectToPage("");
             //}
         }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            WelcomeMessage = "lalala";
-
-            return Page();
-        }
     }
 }

@@ -37,6 +37,8 @@ namespace xmuer
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //注册Session
+            services.AddSession();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -70,7 +72,7 @@ namespace xmuer
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseMvc();
         }
     }

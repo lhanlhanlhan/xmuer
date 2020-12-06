@@ -14,6 +14,17 @@ namespace xmuer.Entities.Home
 		[Column("id")]
 		public int ID { get; set; }
 
+		[Column("user_name")]
+		public String userName { get; set; }
+
+		[Column("password")]
+		public String password { get; set; }
+
+		[Column("state")]
+		public int state { get; set; }
+
+		[Column("type")]
+		public int type { get; set; }
 
 	}
 }
