@@ -25,15 +25,20 @@ namespace xmuer.Pages.Homepage
         public string WelcomeMessage { get; set; }
         public string StudySchool { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             // 获取当前登录的用户
-            //userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
-            user = _db.Users.Find(Convert.ToInt32("1"));
-            userInfo = _db.UserInfos.Find(Convert.ToInt32("1"));
+            string tmp = HttpContext.Session.GetString("userId");
+            if(tmp == "" || tmp == null)
+            {
+                return Redirect("/Homepage/SignIn");
+            }
+            userId = Convert.ToInt32(tmp);
+            user = _db.Users.Find(userId);
+            userInfo = _db.UserInfos.Find(userId);
             WelcomeMessage = user.userName;
             StudySchool = userInfo.university != null ? userInfo.university : "...";
+            return Page();
         }
-
     }
 }

@@ -43,25 +43,25 @@
                                 <div class="modal-body">
                                     <form method="post">
                                         <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-3 col-form-label">大学</label>
+                                            <label for="university" class="col-sm-3 col-form-label">大学</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="university" placeholder="大学" asp-for="userInputInfo.university">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-3 col-form-label">高中</label>
+                                            <label for="highSchool" class="col-sm-3 col-form-label">高中</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="highSchool" placeholder="高中" asp-for="userInputInfo.highSchool">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-3 col-form-label">初中</label>
+                                            <label for="juniorHighSchool" class="col-sm-3 col-form-label">初中</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="juniorHighSchool" placeholder="初中" asp-for="userInputInfo.juniorHighSchool">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-3 col-form-label">小学</label>
+                                            <label for="primarySchool" class="col-sm-3 col-form-label">小学</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="primarySchool" placeholder="小学" asp-for="userInputInfo.primarySchool">
                                             </div>
@@ -180,45 +180,45 @@
                     </div>
                     <form>
                         <div class="form-group row">
-                            <label for="music" class="col-sm-3 col-form-label">音乐</label>
+                            <label for="hobbyMusic" class="col-sm-3 col-form-label">音乐</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="music" value=@Model.userInfo.hobbyMusic>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyMusic" value=@Model.userInfo.hobbyMusic>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="book" class="col-sm-3 col-form-label">书本</label>
+                            <label for="hobbyBook" class="col-sm-3 col-form-label">书本</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="book" value=@Model.userInfo.hobbyBook>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyBook" value=@Model.userInfo.hobbyBook>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="movie" class="col-sm-3 col-form-label">电影</label>
+                            <label for="hobbyMovie" class="col-sm-3 col-form-label">电影</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="movie" value=@Model.userInfo.hobbyMovie>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyMovie" value=@Model.userInfo.hobbyMovie>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="game" class="col-sm-3 col-form-label">游戏</label>
+                            <label for="hobbyGame" class="col-sm-3 col-form-label">游戏</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="game" value=@Model.userInfo.hobbyGame>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyGame" value=@Model.userInfo.hobbyGame>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="anime" class="col-sm-3 col-form-label">动漫</label>
+                            <label for="hobbyAnime" class="col-sm-3 col-form-label">动漫</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="anime" value=@Model.userInfo.hobbyAnime>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyAnime" value=@Model.userInfo.hobbyAnime>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="sport" class="col-sm-3 col-form-label">运动</label>
+                            <label for="hobbySport" class="col-sm-3 col-form-label">运动</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="sport" value=@Model.userInfo.hobbySport>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbySport" value=@Model.userInfo.hobbySport>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="other" class="col-sm-3 col-form-label">爱好</label>
+                            <label for="hobbyOther" class="col-sm-3 col-form-label">爱好</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="other" value=@Model.userInfo.hobbyOther>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyOther" value=@Model.userInfo.hobbyOther>
                             </div>
                         </div>
                     </form>

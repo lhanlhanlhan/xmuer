@@ -23,22 +23,28 @@ namespace xmuer.Pages.Homepage
         public UserInfoModel(MyContext db)
         {
             _db = db;
-            user = _db.Users.Find(Convert.ToInt32("1"));
-            userInfo = _db.UserInfos.Find(Convert.ToInt32("1"));
+            user = _db.Users.Find(userId);
+            userInfo = _db.UserInfos.Find(userId);
             userInputInfo = userInfo;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            // 获取当前登录的用户
-            //userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
-            user = _db.Users.Find(Convert.ToInt32("1"));
-            userInfo = _db.UserInfos.Find(Convert.ToInt32("1"));
+            string tmp = HttpContext.Session.GetString("userId");
+            if (tmp == "" || tmp == null)
+            {
+                return Redirect("/Homepage/SignIn");
+            }
+            userId = Convert.ToInt32(tmp);
+            user = _db.Users.Find(userId);
+            userInfo = _db.UserInfos.Find(userId);
             userInputInfo = userInfo;
+            return Page();
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
+            userInfo = _db.UserInfos.Find(Convert.ToInt32(HttpContext.Session.GetString("userId")));
             userInfo.university = userInputInfo.university != null ? userInputInfo.university : userInfo.university;
             userInfo.highSchool = userInputInfo.highSchool != null ? userInputInfo.highSchool : userInfo.highSchool;
             userInfo.juniorHighSchool = userInputInfo.juniorHighSchool != null ? userInputInfo.juniorHighSchool : userInfo.juniorHighSchool;
@@ -58,9 +64,16 @@ namespace xmuer.Pages.Homepage
             userInfo.hometown = userInputInfo.hometown != null ? userInputInfo.hometown : userInfo.hometown;
             userInfo.email = userInputInfo.email != null ? userInputInfo.email : userInfo.email;
             userInfo.mobile = userInputInfo.mobile != null ? userInputInfo.mobile : userInfo.mobile;
-            _db.UserInfos.Update(userInfo);
-            _db.SaveChanges();
-            RedirectToPage("/Homepage/UserInfo");
+            try
+            {
+                _db.UserInfos.Update(userInfo);
+                _db.SaveChanges();
+                return Page();
+            }
+            catch
+            {
+                return Redirect("/Homepage/UserInfo");
+            }
         }
 
     }
