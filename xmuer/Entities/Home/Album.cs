@@ -17,5 +17,7 @@ namespace xmuer.Entities.Home
 		[Column("user_id")]
 		public int UserID { get; set; }
 
+		[Column("picture")]
+		public string Picture { get; set; }
 	}
 }

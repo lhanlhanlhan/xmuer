@@ -52,6 +52,7 @@ namespace xmuer
             //注册业务实现
             services.AddScoped<IAlbumService, AlbumService>();
 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
