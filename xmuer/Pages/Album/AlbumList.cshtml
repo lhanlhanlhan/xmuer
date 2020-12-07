@@ -1,0 +1,11 @@
+﻿@using xmuer.Models.Home
+
+@model AlbumListModel
+
+	@{ foreach (var album in Model.albums)
+		{
+			<tr>	
+				<td>@album.ID</td>
+			</tr>
+		}
+	}
