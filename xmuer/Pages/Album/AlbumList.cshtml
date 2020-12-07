@@ -2,10 +2,29 @@
 
 @model AlbumListModel
 
-	@{ foreach (var album in Model.albums)
-		{
-			<tr>	
-				<td>@album.ID</td>
-			</tr>
+<div class="container">
+	<div class="photoHeader">
+		<div class="btnContainer">
+			<span class="photoTitle">最近照片</span>
+			<span class="photoTitle">我的相册</span>
+			<button class="uploadBtn">上传照片</button>
+			<button class="mybtn">新建相册</button>
+		</div>
+	</div>
+
+
+	<div class="photoContainer">
+		@{ foreach (var album in Model.albums)
+			{
+				<div class="photoItem">
+					<img src="@Url.Content(@album.Picture)" height="200" width="150" />
+					<span>
+						@album.Name
+					</span>
+				</div>
+			}
 		}
-	}
+	</div>
+
+
+</div>

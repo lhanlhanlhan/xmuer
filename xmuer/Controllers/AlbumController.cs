@@ -11,7 +11,7 @@ using xmuer.Service.Interface;
 
 namespace xmuer.Controllers.Home
 {
-	[Route("api/[controller]")]
+	[Route("home/[controller]")]
 	[ApiController]
 	public class AlbumController : Controller
 	{
@@ -30,6 +30,7 @@ namespace xmuer.Controllers.Home
 		#endregion
 
 		[HttpGet]
+
 		public IActionResult GetAlbumList()
 		{
 
@@ -42,6 +43,12 @@ namespace xmuer.Controllers.Home
 			}
 
 			return View("Pages/Album/AlbumList.cshtml",albumListModel);
+		}
+
+		[HttpPost("id")]
+		public IActionResult uploadPhoto()
+		{
+			return View();
 		}
 	}
 }
