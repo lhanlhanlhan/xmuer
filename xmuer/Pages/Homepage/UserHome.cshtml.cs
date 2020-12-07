@@ -14,6 +14,8 @@ namespace xmuer.Pages.Homepage
     {
         private readonly MyContext _db;
         private User user;
+        private UserInfo userInfo;
+        private int userId;
 
         public UserHomeModel(MyContext db)
         {
@@ -21,17 +23,16 @@ namespace xmuer.Pages.Homepage
         }
 
         public string WelcomeMessage { get; set; }
+        public string StudySchool { get; set; }
 
         public void OnGet()
         {
             // 获取当前登录的用户
-            //user = UserService.GetUserByID(Convert.ToInt32(HttpContext.Session.GetString("userId")));
+            //userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
             user = _db.Users.Find(Convert.ToInt32("1"));
+            userInfo = _db.UserInfos.Find(Convert.ToInt32("1"));
             WelcomeMessage = user.userName;
-            //else
-            //{
-            //    RedirectToPage("");
-            //}
+            StudySchool = userInfo.university != null ? userInfo.university : "...";
         }
 
     }

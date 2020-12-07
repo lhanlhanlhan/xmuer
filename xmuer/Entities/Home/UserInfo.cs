@@ -14,9 +14,6 @@ namespace xmuer.Entities.Home
         [Column("id")]
         public int ID { get; set; }
 
-        [Column("user_name")]
-        public String userName { get; set; }
-
         [Column("real_name")]
         public String realName { get; set; }
 
