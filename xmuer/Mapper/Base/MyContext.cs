@@ -19,5 +19,7 @@ namespace xmuer.Mapper.Base
 
 		public DbSet<UserInfo> UserInfos { get; set; }
 
+		public DbSet<Photo> Photos { get; set; }
+
 	}
 }

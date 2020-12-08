@@ -11,11 +11,14 @@ namespace xmuer.Common.Infrastructure
 		[Description("成功")]
 		OK = 0,
 
+		[Description("服务器内部错误")]
+		INTERNAL_SERVER_ERR = 500,
+
 		[Description("数据不能为空")]
 		DATA_NOT_EMPTY = 601,
 
-		[Description("服务器内部错误")]
-		INTERNAL_SERVER_ERR = 500
+		[Description("上传文件为空")]
+		UPLOAD_FILE_EMPTY = 602
 	}
 
 	//获取描述
