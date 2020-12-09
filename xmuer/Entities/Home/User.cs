@@ -26,6 +26,56 @@ namespace xmuer.Entities.Home
 		[Column("type")]
 		public int type { get; set; }
 
+        #region
+        [Column("gender")]
+        public int gender { get; set; }
+
+        [Column("birthday")]
+        public DateTime birthday { get; set; }
+
+        [Column("hometown")]
+        public String hometown { get; set; }
+
+        [Column("email")]
+        public String email { get; set; }
+
+        [Column("mobile")]
+        public String mobile { get; set; }
+
+        [Column("university")]
+        public String university { get; set; }
+
+        [Column("high_school")]
+        public String highSchool { get; set; }
+
+        [Column("junior_high_school")]
+        public String juniorHighSchool { get; set; }
+
+        [Column("primary_school")]
+        public String primarySchool { get; set; }
+
+        [Column("hobby_music")]
+        public String hobbyMusic { get; set; }
+
+        [Column("hobby_book")]
+        public String hobbyBook { get; set; }
+
+        [Column("hobby_movie")]
+        public String hobbyMovie { get; set; }
+
+        [Column("hobby_game")]
+        public String hobbyGame { get; set; }
+
+        [Column("hobby_anime")]
+        public String hobbyAnime { get; set; }
+
+        [Column("hobby_sport")]
+        public String hobbySport { get; set; }
+
+        [Column("hobby_other")]
+        public String hobbyOther { get; set; }
+
+        #endregion
 
         #region 新鲜事页面所需字段
         [Column("real_name")]

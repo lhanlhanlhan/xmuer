@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Primitives;
 using xmuer.Entities.Home;
 using xmuer.Mapper.Base;
 
@@ -14,18 +16,31 @@ namespace xmuer.Pages.Homepage
     public class UserInfoModel : PageModel
     {
         private readonly MyContext _db;
-        private Entities.Home.User user;
-        public UserInfo userInfo;
+        public Entities.Home.User user;
         private int userId;
-        [BindProperty]
-        public UserInfo userInputInfo { get; set; }
+
+        public string iuniversity { get; set; }
+        public string ihighSchool { get; set; }
+        public string ijuniorHighSchool { get; set; }
+        public string iprimarySchool { get; set; }
+        public string ihobbyMusic { get; set; }
+        public string ihobbyBook { get; set; }
+        public string ihobbyMovie { get; set; }
+        public string ihobbyGame { get; set; }
+        public string ihobbyAnime { get; set; }
+        public string ihobbySport { get; set; }
+        public string ihobbyOther { get; set; }
+        public string irealName { get; set; }
+        public int igender { get; set; }
+        public DateTime ibirthday { get; set; }
+        public string ihometown { get; set; }
+        public string iemail { get; set; }
+        public string imobile { get; set; }
 
         public UserInfoModel(MyContext db)
         {
             _db = db;
             user = _db.Users.Find(userId);
-            userInfo = _db.UserInfos.Find(userId);
-            userInputInfo = userInfo;
         }
 
         public IActionResult OnGet()
@@ -37,38 +52,63 @@ namespace xmuer.Pages.Homepage
             }
             userId = Convert.ToInt32(tmp);
             user = _db.Users.Find(userId);
-            userInfo = _db.UserInfos.Find(userId);
-            userInputInfo = userInfo;
+            iuniversity = user.university;
+            ihighSchool = user.highSchool;
+            ijuniorHighSchool = user.juniorHighSchool;
+            iprimarySchool = user.primarySchool;
+            ihobbyMusic = user.hobbyMusic;
+            ihobbyBook = user.hobbyBook;
+            ihobbyMovie = user.hobbyMovie;
+            ihobbyGame = user.hobbyGame;
+            ihobbyAnime = user.hobbyAnime;
+            ihobbySport = user.hobbySport;
+            ihobbyOther = user.hobbyOther;
+            irealName = user.realName;
+            igender = user.gender;
+            ibirthday = user.birthday;
+            ihometown = user.hometown;
+            iemail = user.email;
+            imobile = user.mobile;
             return Page();
         }
 
         public IActionResult OnPost()
         {
-            userInfo = _db.UserInfos.Find(Convert.ToInt32(HttpContext.Session.GetString("userId")));
-            userInfo.university = userInputInfo.university != null ? userInputInfo.university : userInfo.university;
-            userInfo.highSchool = userInputInfo.highSchool != null ? userInputInfo.highSchool : userInfo.highSchool;
-            userInfo.juniorHighSchool = userInputInfo.juniorHighSchool != null ? userInputInfo.juniorHighSchool : userInfo.juniorHighSchool;
-            userInfo.primarySchool = userInputInfo.primarySchool != null ? userInputInfo.primarySchool : userInfo.primarySchool;
-            
-            userInfo.hobbyMusic = userInputInfo.hobbyMusic != null ? userInputInfo.hobbyMusic : userInfo.hobbyMusic;
-            userInfo.hobbyBook = userInputInfo.hobbyBook != null ? userInputInfo.hobbyBook : userInfo.hobbyBook;
-            userInfo.hobbyMovie = userInputInfo.hobbyMovie != null ? userInputInfo.hobbyMovie : userInfo.hobbyMovie;
-            userInfo.hobbyGame = userInputInfo.hobbyGame != null ? userInputInfo.hobbyGame : userInfo.hobbyGame;
-            userInfo.hobbyAnime = userInputInfo.hobbyAnime != null ? userInputInfo.hobbyAnime : userInfo.hobbyAnime;
-            userInfo.hobbySport = userInputInfo.hobbySport != null ? userInputInfo.hobbySport : userInfo.hobbySport;
-            userInfo.hobbyOther = userInputInfo.hobbyOther != null ? userInputInfo.hobbyOther : userInfo.hobbyOther;
-
-            userInfo.realName = userInputInfo.realName != null ? userInputInfo.realName : userInfo.realName;
-            userInfo.gender = userInputInfo.gender != 0 ? userInputInfo.gender : userInfo.gender;
-            userInfo.birthday = userInputInfo.birthday.Ticks != 0 ? userInputInfo.birthday : userInfo.birthday;
-            userInfo.hometown = userInputInfo.hometown != null ? userInputInfo.hometown : userInfo.hometown;
-            userInfo.email = userInputInfo.email != null ? userInputInfo.email : userInfo.email;
-            userInfo.mobile = userInputInfo.mobile != null ? userInputInfo.mobile : userInfo.mobile;
+            user = _db.Users.Find(Convert.ToInt32(HttpContext.Session.GetString("userId")));
+            IEnumerator<KeyValuePair<string, StringValues>> enumerator = Request.Form.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                KeyValuePair<string, StringValues> single = enumerator.Current;
+                if (single.Key == "iuniversity") user.university = single.Value.ToString();
+                if (single.Key == "ihighSchool") user.highSchool = single.Value.ToString();
+                if (single.Key == "ijuniorHighSchool") user.juniorHighSchool = single.Value.ToString();
+                if (single.Key == "iprimarySchool") user.primarySchool = single.Value.ToString();
+                if (single.Key == "ihobbyMusic") user.hobbyMusic = single.Value.ToString();
+                if (single.Key == "ihobbyBook") user.hobbyBook = single.Value.ToString();
+                if (single.Key == "ihobbyMovie") user.hobbyMovie = single.Value.ToString();
+                if (single.Key == "ihobbyGame") user.hobbyGame = single.Value.ToString();
+                if (single.Key == "ihobbyAnime") user.hobbyAnime = single.Value.ToString();
+                if (single.Key == "ihobbySport") user.hobbySport = single.Value.ToString();
+                if (single.Key == "ihobbyOther") user.hobbyOther = single.Value.ToString();
+                if (single.Key == "irealName") user.realName = single.Value.ToString();
+                if (single.Key == "igender") user.gender = single.Value.ToString() != null ? Convert.ToInt32(single.Value.ToString()) : 0;
+                if (single.Key == "ibirthday")
+                {
+                    DateTime dt;
+                    DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
+                    dtFormat.ShortDatePattern = "yyyy-MM-dd";
+                    dt = Convert.ToDateTime(single.Value.ToString(), dtFormat);
+                    user.birthday = dt;
+                }
+                if (single.Key == "ihometown") user.hometown = single.Value.ToString();
+                if (single.Key == "iemail") user.email = single.Value.ToString();
+                if (single.Key == "imobile") user.mobile = single.Value.ToString();
+            }
             try
             {
-                _db.UserInfos.Update(userInfo);
+                _db.Users.Update(user);
                 _db.SaveChanges();
-                return Page();
+                return Redirect("/Homepage/UserInfo");
             }
             catch
             {

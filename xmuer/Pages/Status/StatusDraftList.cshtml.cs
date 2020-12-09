@@ -13,7 +13,7 @@ namespace xmuer.Pages.Status
     public class StatusDraftListModel : PageModel
     {
         private readonly MyContext _db;
-        private User user;
+        private Entities.Home.User user;
         public List<xmuer.Entities.Home.Status> statuses { get; set; }
         private int userId;
 

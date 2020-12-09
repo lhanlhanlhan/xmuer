@@ -26,21 +26,6 @@ CREATE TABLE `user` (
   `state` tinyint DEFAULT 0,
   `type` tinyint DEFAULT 0,
   `real_name` varchar(32) DEFAULT NULL,
-  `student_no` varchar(32) DEFAULT NULL,
-  `college` varchar(32) DEFAULT NULL,
-  `department` varchar(32) DEFAULT NULL,
-  `major` varchar(32) DEFAULT NULL,
-  `avatar` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-DROP TABLE IF EXISTS `user_info`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_info` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `real_name` varchar(32) DEFAULT NULL,
   `gender` tinyint DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `hometown` varchar(128) DEFAULT NULL,
@@ -57,12 +42,16 @@ CREATE TABLE `user_info` (
   `hobby_anime` varchar(64) DEFAULT NULL,
   `hobby_sport` varchar(64) DEFAULT NULL,
   `hobby_other` varchar(64) DEFAULT NULL,
+  `student_no` varchar(32) DEFAULT NULL,
+  `college` varchar(32) DEFAULT NULL,
+  `department` varchar(32) DEFAULT NULL,
+  `major` varchar(32) DEFAULT NULL,
+  `avatar` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
-
+INSERT INTO `xmuer`.`user` (`id`, `user_name`, `password`, `state`, `type`, `real_name`, `gender`, `birthday`, `hometown`, `email`, `mobile`, `university`, `high_school`, `junior_high_school`, `primary_school`, `hobby_music`, `hobby_book`, `hobby_movie`, `hobby_game`, `hobby_anime`, `hobby_sport`, `hobby_other`, `student_no`, `college`, `department`, `major`, `avatar`) VALUES ('1', 'wwc', '123', '1', '1', 'wang', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '~/album/timg.png');
 
 create table album(
 	id INT AUTO_INCREMENT PRIMARY KEY,			-- 自增列需为主键

@@ -2,7 +2,7 @@
 @model xmuer.Pages.Homepage.UserInfoModel
 @{
     var gender = "其他";
-    switch (Model.userInfo.gender)
+    switch (Model.user.gender)
     {
         case 1:
             gender = "男";
@@ -14,7 +14,6 @@
             gender = "其他";
             break;
     };
-    Model.userInputInfo = Model.userInfo;
 }
 
 <div class="container">
@@ -45,25 +44,25 @@
                                         <div class="form-group row">
                                             <label for="university" class="col-sm-3 col-form-label">大学</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="university" placeholder="大学" asp-for="userInputInfo.university">
+                                                <input type="text" class="form-control" id="university" placeholder="大学" asp-for="iuniversity">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="highSchool" class="col-sm-3 col-form-label">高中</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="highSchool" placeholder="高中" asp-for="userInputInfo.highSchool">
+                                                <input type="text" class="form-control" id="highSchool" placeholder="高中" asp-for="ihighSchool">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="juniorHighSchool" class="col-sm-3 col-form-label">初中</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="juniorHighSchool" placeholder="初中" asp-for="userInputInfo.juniorHighSchool">
+                                                <input type="text" class="form-control" id="juniorHighSchool" placeholder="初中" asp-for="ijuniorHighSchool">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="primarySchool" class="col-sm-3 col-form-label">小学</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="primarySchool" placeholder="小学" asp-for="userInputInfo.primarySchool">
+                                                <input type="text" class="form-control" id="primarySchool" placeholder="小学" asp-for="iprimarySchool">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -81,25 +80,25 @@
                         <div class="form-group row">
                             <label for="university" class="col-sm-3 col-form-label">大学</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="university" value=@Model.userInfo.university>
+                                <input type="text" readonly class="form-control-plaintext" id="university" value=@Model.user.university>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="highSchool" class="col-sm-3 col-form-label">高中</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="highSchool" value=@Model.userInfo.highSchool>
+                                <input type="text" readonly class="form-control-plaintext" id="highSchool" value=@Model.user.highSchool>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="juniorHighSchool" class="col-sm-3 col-form-label">初中</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="juniorHighSchool" value=@Model.userInfo.juniorHighSchool>
+                                <input type="text" readonly class="form-control-plaintext" id="juniorHighSchool" value=@Model.user.juniorHighSchool>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="primarySchool" class="col-sm-3 col-form-label">小学</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="primarySchool" value=@Model.userInfo.primarySchool>
+                                <input type="text" readonly class="form-control-plaintext" id="primarySchool" value=@Model.user.primarySchool>
                             </div>
                         </div>
                     </form>
@@ -128,43 +127,43 @@
                                         <div class="form-group row">
                                             <label for="hobbyMusic" class="col-sm-3 col-form-label">音乐</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="hobbyMusic" placeholder="音乐" asp-for="userInputInfo.hobbyMusic">
+                                                <input type="text" class="form-control" id="hobbyMusic" placeholder="音乐" asp-for="ihobbyMusic">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="hobbyBook" class="col-sm-3 col-form-label">书本</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="hobbyBook" placeholder="书本" asp-for="userInputInfo.hobbyBook">
+                                                <input type="text" class="form-control" id="hobbyBook" placeholder="书本" asp-for="ihobbyBook">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="hobbyMovie" class="col-sm-3 col-form-label">电影</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="hobbyMovie" placeholder="电影" asp-for="userInputInfo.hobbyMovie">
+                                                <input type="text" class="form-control" id="hobbyMovie" placeholder="电影" asp-for="ihobbyMovie">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="hobbyGame" class="col-sm-3 col-form-label">游戏</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="hobbyGame" placeholder="游戏" asp-for="userInputInfo.hobbyGame">
+                                                <input type="text" class="form-control" id="hobbyGame" placeholder="游戏" asp-for="ihobbyGame">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="hobbyAnime" class="col-sm-3 col-form-label">动漫</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="hobbyAnime" placeholder="动漫" asp-for="userInputInfo.hobbyAnime">
+                                                <input type="text" class="form-control" id="hobbyAnime" placeholder="动漫" asp-for="ihobbyAnime">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="hobbySport" class="col-sm-3 col-form-label">运动</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="hobbySport" placeholder="运动" asp-for="userInputInfo.hobbySport">
+                                                <input type="text" class="form-control" id="hobbySport" placeholder="运动" asp-for="ihobbySport">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="hobbyOther" class="col-sm-3 col-form-label">爱好</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="hobbyOther" placeholder="爱好" asp-for="userInputInfo.hobbyOther">
+                                                <input type="text" class="form-control" id="hobbyOther" placeholder="爱好" asp-for="ihobbyOther">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -182,43 +181,43 @@
                         <div class="form-group row">
                             <label for="hobbyMusic" class="col-sm-3 col-form-label">音乐</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="hobbyMusic" value=@Model.userInfo.hobbyMusic>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyMusic" value=@Model.user.hobbyMusic>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="hobbyBook" class="col-sm-3 col-form-label">书本</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="hobbyBook" value=@Model.userInfo.hobbyBook>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyBook" value=@Model.user.hobbyBook>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="hobbyMovie" class="col-sm-3 col-form-label">电影</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="hobbyMovie" value=@Model.userInfo.hobbyMovie>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyMovie" value=@Model.user.hobbyMovie>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="hobbyGame" class="col-sm-3 col-form-label">游戏</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="hobbyGame" value=@Model.userInfo.hobbyGame>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyGame" value=@Model.user.hobbyGame>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="hobbyAnime" class="col-sm-3 col-form-label">动漫</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="hobbyAnime" value=@Model.userInfo.hobbyAnime>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyAnime" value=@Model.user.hobbyAnime>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="hobbySport" class="col-sm-3 col-form-label">运动</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="hobbySport" value=@Model.userInfo.hobbySport>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbySport" value=@Model.user.hobbySport>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="hobbyOther" class="col-sm-3 col-form-label">爱好</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="hobbyOther" value=@Model.userInfo.hobbyOther>
+                                <input type="text" readonly class="form-control-plaintext" id="hobbyOther" value=@Model.user.hobbyOther>
                             </div>
                         </div>
                     </form>
@@ -249,13 +248,13 @@
                                         <div class="form-group row">
                                             <label for="realName" class="col-sm-3 col-form-label">姓名</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="realName" placeholder="姓名" asp-for="userInputInfo.realName">
+                                                <input type="text" class="form-control" id="realName" placeholder="姓名" asp-for="irealName">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="gender" class="col-sm-3 col-form-label">性别</label>
                                             <div class="col-sm-9">
-                                                <select class="custom-select my-1 mr-sm-2" id="gender" asp-for="userInputInfo.gender">
+                                                <select class="custom-select my-1 mr-sm-2" id="gender" asp-for="igender">
                                                     <option selected>选择...</option>
                                                     <option value="1">男</option>
                                                     <option value="2">女</option>
@@ -265,25 +264,25 @@
                                         <div class="form-group row">
                                             <label for="birthday" class="col-sm-3 col-form-label">生日</label>
                                             <div class="col-sm-9">
-                                                <input type="date" class="form-control" id="birthday" placeholder="生日" asp-for="userInputInfo.birthday">
+                                                <input type="date" class="form-control" id="birthday" placeholder="生日" asp-for="ibirthday">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="hometown" class="col-sm-3 col-form-label">家乡</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="hometown" placeholder="家乡" asp-for="userInputInfo.hometown">
+                                                <input type="text" class="form-control" id="hometown" placeholder="家乡" asp-for="ihometown">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="email" class="col-sm-3 col-form-label">邮箱</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="email" placeholder="邮箱" asp-for="userInputInfo.email">
+                                                <input type="text" class="form-control" id="email" placeholder="邮箱" asp-for="iemail">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="mobile" class="col-sm-3 col-form-label">手机号</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="mobile" placeholder="手机号" asp-for="userInputInfo.mobile">
+                                                <input type="text" class="form-control" id="mobile" placeholder="手机号" asp-for="imobile">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -307,25 +306,25 @@
                         <div class="form-group row">
                             <label for="birthday" class="col-sm-3 col-form-label">生日</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="birthday" value=@Model.userInfo.birthday>
+                                <input type="text" readonly class="form-control-plaintext" id="birthday" value=@Model.user.birthday>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="hometown" class="col-sm-3 col-form-label">家乡</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="hometown" value=@Model.userInfo.hometown>
+                                <input type="text" readonly class="form-control-plaintext" id="hometown" value=@Model.user.hometown>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">邮箱</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="email" value=@Model.userInfo.email>
+                                <input type="text" readonly class="form-control-plaintext" id="email" value=@Model.user.email>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="mobile" class="col-sm-3 col-form-label">手机号</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="mobile" value=@Model.userInfo.mobile>
+                                <input type="text" readonly class="form-control-plaintext" id="mobile" value=@Model.user.mobile>
                             </div>
                         </div>
                     </form>

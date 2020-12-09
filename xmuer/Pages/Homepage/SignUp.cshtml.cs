@@ -44,10 +44,6 @@ namespace xmuer.Pages.Homepage
                 _db.Users.Add(newUser);
                 _db.SaveChanges();
                 _db.Entry(newUser);
-                UserInfo newUserInfo = new UserInfo();
-                newUserInfo.ID = newUser.ID;
-                _db.UserInfos.Add(newUserInfo);
-                _db.SaveChanges();
                 return Redirect("/Homepage/SignIn");
             }
             catch
