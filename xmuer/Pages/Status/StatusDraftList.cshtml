@@ -1,0 +1,47 @@
+﻿@page
+@model xmuer.Pages.Status.StatusDraftListModel
+@{
+
+}
+<div class="container">
+    <div class="card border-primary mb-3" style="margin-top:30px">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="./StatusList">我的状态</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./StatusDraftList">草稿箱</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./StatusEdit?new=1">新建</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                @{ foreach (var status in Model.statuses)
+                    {
+                        <div class="card" style="margin-top:30px">
+                            <div class="card-header">
+                                #@(Model.statuses.IndexOf(status) + 1)
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    @Html.Raw(System.Net.WebUtility.UrlDecode(@status.Content))
+                                </div>
+                                <div style="text-align:right;">
+                                    <p></p>
+                                    <div class="btn btn-primary">编辑</div>
+                                    <div class="btn btn-success">发布</div>
+                                    <div class="btn btn-danger">删除</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
