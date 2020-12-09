@@ -1,0 +1,37 @@
+﻿@page
+@model xmuer.Pages.Status.StatusListModel
+@{
+
+}
+<div class="container">
+    <h1 class="page-header">我的状态</h1>
+    <div>
+
+    </div>
+    <div>
+        @{ foreach (var status in Model.statuses)
+            {
+                <div class="card border-dark" style="margin-top:30px">
+                    <div class="card-header">
+                        # @(Model.statuses.IndexOf(status)+1)
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            @Html.Raw(System.Net.WebUtility.UrlDecode(@status.Content))
+                        </div>
+                        <div style="text-align:right;">
+                            <div class="btn btn-primary">编辑</div>
+                            <div class="btn btn-danger">删除</div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        }
+    </div>
+
+
+
+
+</div>
