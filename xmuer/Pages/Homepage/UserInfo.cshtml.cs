@@ -14,7 +14,7 @@ namespace xmuer.Pages.Homepage
     public class UserInfoModel : PageModel
     {
         private readonly MyContext _db;
-        private User user;
+        private Entities.Home.User user;
         public UserInfo userInfo;
         private int userId;
         [BindProperty]

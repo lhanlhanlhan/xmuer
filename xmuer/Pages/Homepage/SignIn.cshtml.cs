@@ -13,7 +13,7 @@ namespace xmuer.Pages.Homepage
     public class SignInModel : PageModel
     {
         private readonly MyContext _db;
-        private User user;
+        private Entities.Home.User user;
 
         public string userName { get; set; }
         public string userPass { get; set; }
@@ -41,7 +41,7 @@ namespace xmuer.Pages.Homepage
                 var userList = from u in _db.Users
                                    where u.userName == userName
                                    select u;
-                User user = userList.First();
+                Entities.Home.User user = userList.First();
                 if(user != null && user.password == userPass)
                 {
                     HttpContext.Session.Clear();

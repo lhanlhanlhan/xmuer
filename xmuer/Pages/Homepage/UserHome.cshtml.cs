@@ -13,7 +13,7 @@ namespace xmuer.Pages.Homepage
     public class UserHomeModel : PageModel
     {
         private readonly MyContext _db;
-        private User user;
+        private Entities.Home.User user;
         private UserInfo userInfo;
         private int userId;
 

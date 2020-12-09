@@ -51,10 +51,12 @@ namespace xmuer
             //注册数据库实现
             services.AddScoped<IAlbumRepository, AlbumRepository>();
             services.AddScoped<IPhotoRepository, PhotoRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             //注册业务实现
             services.AddScoped<IAlbumService, AlbumService>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IUserService, UserService>();
 
 
         }

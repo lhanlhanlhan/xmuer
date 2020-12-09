@@ -23,6 +23,9 @@ namespace xmuer.Service.Interface
 		//通过用户ID取相册
 		IEnumerable<Album> GetAlbumsByUserID(int userID);
 
+		//通过用户ID分页取相册
+		IEnumerable<Album> GetAlbumsByUserID(int userID, int pageLimit, int pageIndex);
+
 		//删除相册
 		Message DeleteAlbumByID(int id);
 

@@ -13,7 +13,7 @@ namespace xmuer.Pages.Homepage
     public class SignUpModel : PageModel
     {
         private readonly MyContext _db;
-        private User user;
+        private Entities.Home.User user;
 
         public string userName { get; set; }
         public string userPass { get; set; }
@@ -29,7 +29,7 @@ namespace xmuer.Pages.Homepage
 
         public IActionResult OnPost()
         {
-            User newUser = new User();
+            Entities.Home.User newUser = new Entities.Home.User();
             IEnumerator<KeyValuePair<string, StringValues>> enumerator = Request.Form.GetEnumerator();
             while (enumerator.MoveNext())
             {

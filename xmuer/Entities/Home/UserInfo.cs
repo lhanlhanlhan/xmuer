@@ -65,5 +65,6 @@ namespace xmuer.Entities.Home
         [Column("hobby_other")]
         public String hobbyOther { get; set; }
 
+       
     }
 }

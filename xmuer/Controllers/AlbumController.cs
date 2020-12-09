@@ -35,12 +35,16 @@ namespace xmuer.Controllers.Home
 
 		[HttpGet]
 
-		public IActionResult GetAlbumList()
+		public IActionResult GetAlbumList(int pageLimit, int pageIndex)
 		{
 
 			AlbumListModel albumListModel = new AlbumListModel();
 
-			IEnumerable<Album> albumIE = AlbumService.GetAlbumsByUserID(1);
+			string tmp = HttpContext.Session.GetString("userId");
+			int userId = Convert.ToInt32(tmp);
+
+			IEnumerable<Album> albumIE = AlbumService.GetAlbumsByUserID(userId,pageLimit,pageIndex);
+			
 			if (albumIE != null)
 			{
 				albumListModel.albums.AddRange(albumIE);
@@ -50,7 +54,7 @@ namespace xmuer.Controllers.Home
 		}
 
 		[HttpPost("{id}")]
-		public async Task<IActionResult> uploadPhoto(int id, IFormFile iFormFile)
+		public async Task<IActionResult> UploadPhoto(int id, IFormFile iFormFile)
 		{
 			Message message = new Message();
 			if (iFormFile == null || iFormFile.Length == 0)
@@ -72,7 +76,7 @@ namespace xmuer.Controllers.Home
 		}
 
 		[HttpPost]
-		public ActionResult<Message> createAlbum(Album album)
+		public ActionResult<Message> CreateAlbum(Album album)
 		{
 			if (album.Picture == null)
 				album.Picture = "~/album/timg.png";

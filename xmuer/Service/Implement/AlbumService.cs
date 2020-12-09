@@ -67,6 +67,31 @@ namespace xmuer.Service.Implement
 			return AlbumRepository.GetAlbumByID(id);
 		}
 
+		//通过用户ID分页取相册
+		public IEnumerable<Album> GetAlbumsByUserID(int userID, int pageLimit, int pageIndex)
+		{
+			IEnumerable<Album> usersIE = new List<Album>();
+			IList<Album> users = new List<Album>();
+
+			usersIE = GetAlbumsByUserID(userID);
+
+			if (usersIE != null)
+			{
+				users = users.ToList();
+			}
+			else
+				return null;
+
+			pageIndex = pageIndex < 1 ? 1 : pageIndex;
+
+			if (users.Count() <= (pageIndex - 1) * pageLimit)
+				return null;
+
+			users = users.Skip((pageIndex - 1) * pageLimit).Take(pageLimit).ToList();
+
+			return users;
+		}
+
 		//通过用户ID取相册
 		public IEnumerable<Album> GetAlbumsByUserID(int userID)
 		{
