@@ -7,6 +7,9 @@ using xmuer.Entities.Home;
 using xmuer.Models.Home;
 using xmuer.Service.Interface;
 using Microsoft.AspNetCore.Http;
+using xmuer.Mapper.Base;
+using DiscussClassSystem.Common.Infrastructure;
+using xmuer.Common.Infrastructure;
 
 namespace xmuer.Controllers
 {
@@ -17,13 +20,15 @@ namespace xmuer.Controllers
 		#region 属性声明
 
 		protected IUserService UserService;
+		protected MyContext Context;
 		#endregion
 
 		#region 构造函数
 
-		public UserController(IUserService userService)
+		public UserController(IUserService userService, MyContext context)
 		{
 			UserService = userService;
+			Context = context;
 		}
 
 		#endregion
@@ -112,6 +117,35 @@ namespace xmuer.Controllers
 			return View("Pages/User/UserList.cshtml", userListModel);
 		}
 
+		[HttpPost("/like/{id}")]
+		public Message LikeOther(int id)
+		{
+			var status = Context.Statuses.SingleOrDefault(s=>s.ID == id);
+			var update = false;
 
+			if (status != null)
+			{
+				status.like++;
+				update = Context.SaveChanges() > 0;
+			}
+			if (update)
+				return new Message((int)MessageCode.OK, MessageCode.OK.GetDescription());
+			return new Message((int)MessageCode.INTERNAL_SERVER_ERR, 
+					MessageCode.INTERNAL_SERVER_ERR.GetDescription());
+		}
+
+		[HttpPost("comment/{id}")]
+		public Message CommentOther(int id, string content)
+		{
+			Comment comment = new Comment();
+			comment.StatusID = id;
+			comment.Content = content;
+			Context.Comments.Add(comment);
+			var saveState = Context.SaveChanges() > 0;
+			if (saveState)
+				return new Message((int)MessageCode.OK, MessageCode.OK.GetDescription());
+			return new Message((int)MessageCode.INTERNAL_SERVER_ERR,
+					MessageCode.INTERNAL_SERVER_ERR.GetDescription());
+		}
 	}
 }
