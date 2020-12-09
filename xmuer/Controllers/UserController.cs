@@ -48,7 +48,7 @@ namespace xmuer.Controllers
 		}
 
 		[HttpGet("name")]
-		public IActionResult GetUsersByName(string name)
+		public IActionResult GetUsersByName([FromForm] string name)
 		{
 			UserListModel userListModel = new UserListModel();
 
@@ -62,7 +62,7 @@ namespace xmuer.Controllers
 		}
 
 		[HttpGet("colledge")]
-		public IActionResult GetUsersByColledge(string colledge)
+		public IActionResult GetUsersByColledge([FromForm] string colledge)
 		{
 			UserListModel userListModel = new UserListModel();
 
@@ -76,7 +76,7 @@ namespace xmuer.Controllers
 		}
 
 		[HttpGet("department")]
-		public IActionResult GetUsersByDepartment(string department)
+		public IActionResult GetUsersByDepartment([FromForm] string department)
 		{
 			UserListModel userListModel = new UserListModel();
 
@@ -90,7 +90,7 @@ namespace xmuer.Controllers
 		}
 
 		[HttpGet("major")]
-		public IActionResult GetUsersByMajor(string major)
+		public IActionResult GetUsersByMajor([FromForm] string major)
 		{
 			UserListModel userListModel = new UserListModel();
 
@@ -104,7 +104,7 @@ namespace xmuer.Controllers
 		}
 
 		[HttpGet("studentNo")]
-		public IActionResult GetUsersByStudentNo(string studentNo)
+		public IActionResult GetUsersByStudentNo([FromForm] string studentNo)
 		{
 			UserListModel userListModel = new UserListModel();
 
@@ -117,7 +117,7 @@ namespace xmuer.Controllers
 			return View("Pages/User/UserList.cshtml", userListModel);
 		}
 
-		[HttpPost("/like/{id}")]
+		[HttpPost("like/{id}")]
 		public Message LikeOther(int id)
 		{
 			var status = Context.Statuses.SingleOrDefault(s=>s.ID == id);
@@ -135,7 +135,7 @@ namespace xmuer.Controllers
 		}
 
 		[HttpPost("comment/{id}")]
-		public Message CommentOther(int id, string content)
+		public Message CommentOther(int id, [FromForm] string content)
 		{
 			Comment comment = new Comment();
 			comment.StatusID = id;

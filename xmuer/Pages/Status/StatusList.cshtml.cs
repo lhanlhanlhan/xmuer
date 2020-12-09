@@ -14,6 +14,7 @@ namespace xmuer.Pages.Status
     {
         private readonly MyContext _db;
         private Entities.Home.User user;
+
         public List<xmuer.Entities.Home.Status> statuses { get; set; }
         private int userId;
 

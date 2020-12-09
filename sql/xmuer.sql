@@ -78,13 +78,14 @@ CREATE TABLE `status`  (
   `user_id` int(0) NULL DEFAULT NULL,
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `state` tinyint(0) NULL DEFAULT NULL,
+  `like` int NULL DEFAULT NULL,
   `gmt_create` datetime(0) NULL DEFAULT NULL,
   `gmt_modified` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-INSERT INTO `status` VALUES (1, 1, '<p>好心情</p>', 1, '2020-12-06 17:05:50', NULL);
-INSERT INTO `status` VALUES (2, 1, '<p>哈</p>', 1, '2020-12-07 18:06:08', NULL);
+INSERT INTO `status` VALUES (1, 1, '<p>好心情</p>', 1, 0, '2020-12-06 17:05:50', NULL);
+INSERT INTO `status` VALUES (2, 1, '<p>哈</p>', 1, 0, '2020-12-07 18:06:08', NULL);
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
