@@ -23,5 +23,7 @@ namespace xmuer.Entities.Home
         [Column("state")]
         public int State { get; set; }
 
+        [Column("like")]
+        public int like { get; set; }
     }
 }

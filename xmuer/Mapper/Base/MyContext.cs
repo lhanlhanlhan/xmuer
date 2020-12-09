@@ -21,5 +21,6 @@ namespace xmuer.Mapper.Base
 
 		public DbSet<Status> Statuses { get; set; }
 
+		public DbSet<Comment> Comments { get; set; }
 	}
 }
