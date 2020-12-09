@@ -10,14 +10,14 @@ using xmuer.Mapper.Base;
 
 namespace xmuer.Pages.Status
 {
-    public class StatusListModel : PageModel
+    public class StatusDraftListModel : PageModel
     {
         private readonly MyContext _db;
         private User user;
         public List<xmuer.Entities.Home.Status> statuses { get; set; }
         private int userId;
 
-        public StatusListModel(MyContext db)
+        public StatusDraftListModel(MyContext db)
         {
             _db = db;
         }
@@ -30,9 +30,9 @@ namespace xmuer.Pages.Status
                 return Redirect("/Homepage/SignIn");
             }
             userId = Convert.ToInt32(tmp);
-            statuses = _db.Statuses.Where(s => s.UserID == userId).Where(s=>s.State==2)
+            statuses = _db.Statuses.Where(s => s.UserID == userId).Where(s => s.State == 1)
                 .ToList<Entities.Home.Status>();
-            
+
             return Page();
         }
     }

@@ -1,5 +1,5 @@
 ﻿@page
-@model xmuer.Pages.Status.StatusListModel
+@model xmuer.Pages.Status.StatusDraftListModel
 @{
 
 }
@@ -8,10 +8,10 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="./StatusList">我的状态</a>
+                    <a class="nav-link" href="./StatusList">我的状态</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./StatusDraftList">草稿箱</a>
+                    <a class="nav-link active" href="./StatusDraftList">草稿箱</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./StatusEdit?new=1">新建</a>
@@ -33,6 +33,7 @@
                                 <div style="text-align:right;">
                                     <p></p>
                                     <div class="btn btn-primary">编辑</div>
+                                    <div class="btn btn-success">发布</div>
                                     <div class="btn btn-danger">删除</div>
                                 </div>
                             </div>
@@ -43,3 +44,4 @@
         </div>
     </div>
 </div>
+
