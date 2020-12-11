@@ -115,7 +115,7 @@
             });
         </script>
         <script>
-            $('#submit-status').click(function () {
+            $('#post-status').click(function () {
                 var x = tinyMCE.editors[0].getContent();
                 if (x == null || x == "") {
                     alert('输入状态为空！');
@@ -126,7 +126,7 @@
                     formData.append('content', x);
                     $.ajax({
                         type: "POST",
-                        url: $("#form").context.URL + "&submit=1",
+                        url: $("#form").context.URL + "&post=1",
                         data: formData,
                         cache: false,
                         processData: false,
@@ -138,6 +138,7 @@
                         success: function (data) {
                             console.log(data);
                             $("#result").text("Success.").addClass("alert-success").removeClass("alert-danger");
+                            setTimeout(function(){ window.location.href="/Status/StatusList"; }, 3000);
                         },
                         error: function (err) {
                             console.error(err);
@@ -147,7 +148,7 @@
                     $("#submit").prop("disabled", false);
                 }
             });
-            $('#save-status').click(function () {
+            $('#save-status-draft').click(function () {
                 var x = tinyMCE.editors[0].getContent();
                 if (x == null || x == "") {
                     alert('输入状态为空！');
@@ -158,7 +159,7 @@
                     formData.append('content', x);
                     $.ajax({
                         type: "POST",
-                        url: $("#form").context.URL + "&save=1",
+                        url: $("#form").context.URL + "&draft=1",
                         data: formData,
                         cache: false,
                         processData: false,
@@ -170,6 +171,7 @@
                         success: function (data) {
                             console.log(data);
                             $("#result").text("Success.").addClass("alert-success").removeClass("alert-danger");
+                            setTimeout(function(){ window.location.href="/Status/StatusDraftList"; }, 3000);
                         },
                         error: function (err) {
                             console.error(err);

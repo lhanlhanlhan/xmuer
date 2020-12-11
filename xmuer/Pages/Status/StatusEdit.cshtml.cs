@@ -51,7 +51,7 @@ namespace xmuer.Pages.Status
 
             if (HttpContext.Request.Query.ContainsKey("new")) //新建状态
             {
-                if(HttpContext.Request.Query.ContainsKey("submit")) //发布
+                if(HttpContext.Request.Query.ContainsKey("post")) //发布
                 {
                     Entities.Home.Status status = new Entities.Home.Status();
                     status.UserID = int.Parse(HttpContext.Session.GetString("userId"));
@@ -62,7 +62,7 @@ namespace xmuer.Pages.Status
                     _db.SaveChanges();
                     _db.Entry(status);
                 }
-                if (HttpContext.Request.Query.ContainsKey("save")) //暂存
+                if (HttpContext.Request.Query.ContainsKey("draft")) //暂存
                 {
                     Entities.Home.Status status = new Entities.Home.Status();
                     status.UserID = int.Parse(HttpContext.Session.GetString("userId"));
