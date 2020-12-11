@@ -1,0 +1,68 @@
+﻿@page
+@model xmuer.Pages.Homepage.SignInModel
+@{
+    // 未登入的模板
+    Layout = "~/Pages/Shared/_LayoutNotLoggedIn.cshtml";
+    ViewData["Title"] = "登入";
+}
+
+@*登入页面模板*@
+<link rel="stylesheet" href="/css/LoginPage.css" />
+
+<div class="my-login-page">
+    <section class="h-100">
+        <div class="row justify-content-md-center h-100">
+            <div class="card-wrapper">
+                <div class="brand">
+                    <img src="/images/xmulogo.jpg" alt="logo">
+                </div>
+                <div class="card fat">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">用 XMUer ID 登入</h4>
+                        <form method="post" class="my-login-validation">
+                            <div class="form-group row">
+                                <input type="text" class="form-control" id="userName" placeholder="用户名" asp-for="userName">
+                                @* 用户名无效时显示 *@
+                                <div class="invalid-feedback">
+                                    用户名无效
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <input type="password" class="form-control" id="userPass" placeholder="密码" asp-for="userPass">
+                                @* 密码无效时显示 *@
+                                <div class="invalid-feedback">
+                                    请输入密码
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-checkbox custom-control">
+                                    <input class="custom-control-input" type="checkbox" id="gridCheck">
+                                    <label class="custom-control-label" for="gridCheck">
+                                        记住我
+                                        @* TODO - 找回密码页面 *@
+                                        <a href="# " class="float-right">
+                                            忘记密码？
+                                        </a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group m-0">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    登入
+                                </button>
+                            </div>
+                            <div class="mt-4 text-center">
+                                还没有 XMUer ID？ <a href="/SignUp">按此注册</a>
+                               
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <hr />
+                <div class="footer">
+                    <p>&copy; 2020 - Xiamen University</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
