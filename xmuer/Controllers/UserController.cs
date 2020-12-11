@@ -125,7 +125,7 @@ namespace xmuer.Controllers
 
 			if (status != null)
 			{
-				status.like++;
+				status.Like++;
 				update = Context.SaveChanges() > 0;
 			}
 			if (update)

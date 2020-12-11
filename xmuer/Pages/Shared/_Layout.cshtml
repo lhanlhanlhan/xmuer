@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Model.HttpContext).RequestToken;
+    }
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -56,7 +63,7 @@
                 <ul class="sidebar-menu">
                     <li class="sidebar-header">欢迎您，Han Li</li>
                     <li>
-                        <a href="#">
+                        <a href="/">
                             <i class="fa fa-home"></i> <span>首页</span> <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
@@ -99,6 +106,80 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/tinymce/5.5.1/tinymce.min.js"></script>
+        <script>
+            tinymce.init({
+                selector: '.tinymce',
+                plugins: "codesample table link paste code preview help",
+                toolbar: 'undo redo paste | styleselect forecolor backcolor bold italic codesample link table | alignleft aligncenter alignright bullist numlist | code preview help', menubar: false
+            });
+        </script>
+        <script>
+            $('#submit-status').click(function () {
+                var x = tinyMCE.editors[0].getContent();
+                if (x == null || x == "") {
+                    alert('输入状态为空！');
+                }
+                else {
+                    $("#submit").prop("disabled", true);
+                    var formData = new FormData();
+                    formData.append('content', x);
+                    $.ajax({
+                        type: "POST",
+                        url: $("#form").context.URL + "&submit=1",
+                        data: formData,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        headers:
+                        {
+                            "RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            $("#result").text("Success.").addClass("alert-success").removeClass("alert-danger");
+                        },
+                        error: function (err) {
+                            console.error(err);
+                            $("#result").html("Error.").removeClass("alert-success").addClass("alert-danger");
+                        }
+                    });
+                    $("#submit").prop("disabled", false);
+                }
+            });
+            $('#save-status').click(function () {
+                var x = tinyMCE.editors[0].getContent();
+                if (x == null || x == "") {
+                    alert('输入状态为空！');
+                }
+                else {
+                    $("#submit").prop("disabled", true);
+                    var formData = new FormData();
+                    formData.append('content', x);
+                    $.ajax({
+                        type: "POST",
+                        url: $("#form").context.URL + "&save=1",
+                        data: formData,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        headers:
+                        {
+                            "RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            $("#result").text("Success.").addClass("alert-success").removeClass("alert-danger");
+                        },
+                        error: function (err) {
+                            console.error(err);
+                            $("#result").html("Error.").removeClass("alert-success").addClass("alert-danger");
+                        }
+                    });
+                    $("#submit").prop("disabled", false);
+                }
+            });
+        </script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.1.min.js"

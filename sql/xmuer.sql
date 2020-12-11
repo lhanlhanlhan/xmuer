@@ -74,11 +74,11 @@ create table photo(
 
 DROP TABLE IF EXISTS `status`;
 CREATE TABLE `status`  (
-  `id` int(0) NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `user_id` int(0) NULL DEFAULT NULL,
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `state` tinyint(0) NULL DEFAULT NULL,
-  `like` int NULL DEFAULT NULL,
+  `like` int(0) NULL DEFAULT NULL,
   `gmt_create` datetime(0) NULL DEFAULT NULL,
   `gmt_modified` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE

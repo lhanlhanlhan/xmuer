@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using xmuer.Entities.Home;
 using xmuer.Mapper.Base;
 
 namespace xmuer.Pages.Status
@@ -13,7 +12,7 @@ namespace xmuer.Pages.Status
     public class StatusDraftListModel : PageModel
     {
         private readonly MyContext _db;
-        public List<xmuer.Entities.Home.Status> statuses { get; set; }
+        public List<Entities.Home.Status> statuses { get; set; }
         private int userId;
 
         public StatusDraftListModel(MyContext db)
@@ -30,7 +29,7 @@ namespace xmuer.Pages.Status
             }
             userId = Convert.ToInt32(tmp);
             statuses = _db.Statuses.Where(s => s.UserID == userId).Where(s => s.State == 1)
-                .ToList<Entities.Home.Status>();
+                .ToList();
 
             return Page();
         }

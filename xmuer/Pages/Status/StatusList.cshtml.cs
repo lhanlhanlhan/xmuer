@@ -13,7 +13,6 @@ namespace xmuer.Pages.Status
     public class StatusListModel : PageModel
     {
         private readonly MyContext _db;
-        private Entities.Home.User user;
 
         public List<xmuer.Entities.Home.Status> statuses { get; set; }
         private int userId;
@@ -32,7 +31,7 @@ namespace xmuer.Pages.Status
             }
             userId = Convert.ToInt32(tmp);
             statuses = _db.Statuses.Where(s => s.UserID == userId).Where(s=>s.State==2)
-                .ToList<Entities.Home.Status>();
+                .ToList();
             
             return Page();
         }

@@ -1,0 +1,45 @@
+﻿@page
+@model xmuer.Pages.Status.StatusEditModel
+@{
+}
+<div class="container">
+    <div class="card border-primary mb-3" style="margin-top:30px">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="./StatusList">我的状态</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./StatusDraftList">草稿箱</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./StatusEdit?new=1">新建</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="container">
+                    <h1 class="page-header">编辑状态</h1>
+                    <form name="form" method="post" action=".">
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">内容</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control tinymce" id="content"
+                                          name="content"></textarea>
+                            </div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div class="btn btn-success" id="submit-status" name="submit-status">发布</div>
+                            <div class="btn btn-primary" id="save-status" name="save-status">暂存</div>
+                            <div class="btn btn-default">取消</div>
+                        </div>
+                        <div class="alert" role="alert" id="result"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
