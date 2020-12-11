@@ -19,7 +19,7 @@ namespace xmuer.Pages.Status
             _db = db;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet([FromQuery]int id)
         {
             string tmp = HttpContext.Session.GetString("userId");
             if (tmp == "" || tmp == null)
@@ -30,13 +30,39 @@ namespace xmuer.Pages.Status
 
             if (HttpContext.Request.Query.ContainsKey("new"))
             {
-
+                return Page();
             }
-            else
+            else if (HttpContext.Request.Query.ContainsKey("id"))
             {
-
+                
+                var statusList = from s in _db.Statuses
+                               where 
+                               s.ID==id &&
+                               s.UserID == userId
+                               select s;
+                Entities.Home.Status status = statusList.First();
+           
+                if (status != null)
+                {
+                    if(HttpContext.Request.Query.ContainsKey("post"))
+                    {
+                        status.State = 2;
+                        _db.Statuses.Update(status);
+                        _db.SaveChanges();
+                        _db.Entry(status);
+                        return Redirect("/Status/StatusList");
+                    }
+                    else if(HttpContext.Request.Query.ContainsKey("delete"))
+                    {
+                        status.State = -1;
+                        _db.Statuses.Update(status);
+                        _db.SaveChanges();
+                        _db.Entry(status);
+                        return Redirect("/Status/StatusList");
+                    }
+                }
             }
-            return Page();
+            return Redirect("/Status/StatusList");
         }
 
         
