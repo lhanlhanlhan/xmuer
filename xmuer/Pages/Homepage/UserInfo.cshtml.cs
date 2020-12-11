@@ -48,7 +48,7 @@ namespace xmuer.Pages.Homepage
             string tmp = HttpContext.Session.GetString("userId");
             if (tmp == "" || tmp == null)
             {
-                return Redirect("/Homepage/SignIn");
+                return Redirect("/SignIn");
             }
             userId = Convert.ToInt32(tmp);
             user = _db.Users.Find(userId);

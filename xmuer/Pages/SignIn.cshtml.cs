@@ -52,7 +52,7 @@ namespace xmuer.Pages.Homepage
             }
             catch
             {
-                return Redirect("/Homepage/SignIn");
+                return Redirect("/SignIn");
             }
 
         }

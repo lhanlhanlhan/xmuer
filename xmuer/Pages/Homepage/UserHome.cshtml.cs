@@ -27,7 +27,7 @@ namespace xmuer.Pages.Homepage
 
         public IActionResult OnGet()
         {
-            // ÅÐ¶ÏÊÇ·ñÊÇÆäËûÈË·ÃÎÊ
+            // ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½
             int id = -1;
             IEnumerator<KeyValuePair<string, StringValues>> enumerator = HttpContext.Request.Query.GetEnumerator();
             while (enumerator.MoveNext())
@@ -37,17 +37,17 @@ namespace xmuer.Pages.Homepage
             }
             if (id > 0)
             {
-                // »ñÈ¡µ±Ç°µÇÂ¼µÄÓÃ»§
+                // ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ã»ï¿½
                 user = _db.Users.Find(id);
                 WelcomeMessage = user.userName;
                 StudySchool = user.university != null ? user.university : "...";
                 return Page();
             }
-            // »ñÈ¡µ±Ç°µÇÂ¼µÄÓÃ»§
+            // ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ã»ï¿½
             string tmp = HttpContext.Session.GetString("userId");
             if(tmp == "" || tmp == null)
             {
-                return Redirect("/Homepage/SignIn");
+                return Redirect("/SignIn");
             }
             userId = Convert.ToInt32(tmp);
             user = _db.Users.Find(userId);

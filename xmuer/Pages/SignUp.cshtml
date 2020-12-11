@@ -1,41 +1,62 @@
 ﻿@page
 @model xmuer.Pages.Homepage.SignUpModel
 @{
+    // 未登入的模板
+    Layout = "~/Pages/Shared/_LayoutNotLoggedIn.cshtml";
+    ViewData["Title"] = "注册账户";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card border-primary mb-3" style="margin-top:30px">
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Homepage/SignIn">登录</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/Homepage/SignUp">注册</a>
-                        </li>
-                    </ul>
+@*登入/注册页面 CSS*@
+<link rel="stylesheet" href="/css/LoginPage.css" />
+
+<div class="my-login-page">
+    <section class="h-100">
+        <div class="row justify-content-md-center h-100">
+            <div class="card-wrapper">
+                <div class="brand">
+                    <img src="/images/xmulogo.jpg" alt="logo">
                 </div>
-                <div class="card-body">
-                    <form method="post">
-                        <div class="form-group row">
-                            <label for="userName" class="col-sm-3 col-form-label">用户名</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="userName" placeholder="name" asp-for="userName">
+                <div class="card fat">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">欢迎加入 XMUer 大家庭！</h4>
+                        <form method="post" class="my-login-validation">
+                            <div class="form-group row">
+                                <input type="text" class="form-control" id="userName" placeholder="用户名" asp-for="userName">
+                                @* 用户名无效时显示 *@
+                                <div class="invalid-feedback">
+                                    用户名无效
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="userPass" class="col-sm-3 col-form-label">用户密码</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="userPass" placeholder="password" asp-for="userPass">
+                            <div class="form-group row">
+                                <input type="password" class="form-control" id="userPass" placeholder="设置密码" asp-for="userPass">
+                                @* 密码无效时显示 *@
+                                <div class="invalid-feedback">
+                                    请输入密码
+                                </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">注册</button>
-                        <a href="/Homepage/SignIn" class="btn" role="button" aria-disabled="true">取消</a>
-                    </form>
+                            <div class="form-group row">
+                                <input type="password" class="form-control" id="userPassAgain" placeholder="请再次输入密码" asp-for="userPass">
+                                @* 密码无效时显示 *@
+                                <div class="invalid-feedback">
+                                    请输入密码
+                                </div>
+                            </div>
+                            <div class="form-group m-0">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    加入 XMUer 大家庭
+                                </button>
+                            </div>
+                            <div class="mt-4 text-center">
+                                已有 XMUer ID？ <a href="/SignIn">按此登入</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <hr />
+                <div class="footer">
+                    <p>&copy; 2020 - Xiamen University</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>

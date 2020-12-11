@@ -28,7 +28,7 @@ namespace xmuer.Pages.Status
             string tmp = HttpContext.Session.GetString("userId");
             if (tmp == "" || tmp == null)
             {
-                return Redirect("/Homepage/SignIn");
+                return Redirect("/SignIn");
             }
             userId = Convert.ToInt32(tmp);
             statuses = _db.Statuses.Where(s => s.UserID == userId).Where(s=>s.State==2)

@@ -44,11 +44,11 @@ namespace xmuer.Pages.Homepage
                 _db.Users.Add(newUser);
                 _db.SaveChanges();
                 _db.Entry(newUser);
-                return Redirect("/Homepage/SignIn");
+                return Redirect("/SignIn");
             }
             catch
             {
-                return Redirect("/Homepage/SignUp");
+                return Redirect("/SignUp");
             }
         }
     }
