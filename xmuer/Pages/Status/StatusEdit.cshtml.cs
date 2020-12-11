@@ -34,17 +34,17 @@ namespace xmuer.Pages.Status
             }
             else if (HttpContext.Request.Query.ContainsKey("id"))
             {
-                
+
                 var statusList = from s in _db.Statuses
-                               where 
-                               s.ID==id &&
-                               s.UserID == userId
-                               select s;
+                                 where
+                                 s.ID == id &&
+                                 s.UserID == userId && s.State != -1
+                                 select s;
                 Entities.Home.Status status = statusList.First();
-           
+
                 if (status != null)
                 {
-                    if(HttpContext.Request.Query.ContainsKey("post"))
+                    if (HttpContext.Request.Query.ContainsKey("post"))
                     {
                         status.State = 2;
                         _db.Statuses.Update(status);
@@ -52,7 +52,7 @@ namespace xmuer.Pages.Status
                         _db.Entry(status);
                         return Redirect("/Status/StatusList");
                     }
-                    else if(HttpContext.Request.Query.ContainsKey("delete"))
+                    else if (HttpContext.Request.Query.ContainsKey("delete"))
                     {
                         status.State = -1;
                         _db.Statuses.Update(status);
@@ -65,8 +65,8 @@ namespace xmuer.Pages.Status
             return Redirect("/Status/StatusList");
         }
 
-        
-        public IActionResult OnPost()
+
+        public IActionResult OnPost([FromQuery]int id)
         {
             string tmp = HttpContext.Session.GetString("userId");
             if (tmp == "" || tmp == null)
@@ -77,7 +77,7 @@ namespace xmuer.Pages.Status
 
             if (HttpContext.Request.Query.ContainsKey("new")) //新建状态
             {
-                if(HttpContext.Request.Query.ContainsKey("post")) //发布
+                if (HttpContext.Request.Query.ContainsKey("post")) //发布
                 {
                     Entities.Home.Status status = new Entities.Home.Status();
                     status.UserID = int.Parse(HttpContext.Session.GetString("userId"));
@@ -101,9 +101,30 @@ namespace xmuer.Pages.Status
                 }
 
             }
+            if (HttpContext.Request.Query.ContainsKey("edit")) //修改状态内容
+            {
+                if (HttpContext.Request.Query.ContainsKey("id"))
+                {
 
+                    var statusList = from s in _db.Statuses
+                                     where
+                                     s.ID == id &&
+                                     s.UserID == userId && s.State != -1
+                                     select s;
+                    Entities.Home.Status status = statusList.First();
+
+                    if (status != null)
+                    {
+                        status.Content = HttpContext.Request.Form["content"];
+                        _db.Statuses.Update(status);
+                        _db.SaveChanges();
+                    }
+
+                    return Content("OK");
+                }
+
+            }
             return Page();
         }
-
     }
 }

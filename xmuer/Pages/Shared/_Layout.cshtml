@@ -115,15 +115,61 @@
             });
         </script>
         <script>
+
+            function tinyMCEFill(index) {
+                content = $('#html-content-' + (index + 1).toString()).html();
+                tinyMCE.editors[parseInt(index)].setContent(content);
+            }
+
+            function tinyMCESave(index, id) {
+                var content = tinyMCE.editors[parseInt(index)].getContent();
+
+                if (content == null || content == "") {
+                    alert('输入状态为空！');
+                }
+                else {
+                    $("#submit-" + (index+1).toString()).prop("disabled", true);
+                    var formData = new FormData();
+                    formData.append('content', content);
+                    $.ajax({
+                        type: "POST",
+                        url: "/Status/StatusEdit?id=" + id + "&edit=1",
+                        data: formData,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        headers:
+                        {
+                            "RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            alert('保存成功。');
+                            setTimeout(function(){ location.reload(); }, 500);
+
+                        },
+                        error: function (err) {
+                            console.error(err);
+                            alert('保存失败。');
+                        }
+                    });
+                    $("#submit-" + (index + 1).toString()).prop("disabled", false);
+
+                }
+            }
+        </script>
+        <script>
             $('#post-status').click(function () {
                 var x = tinyMCE.editors[0].getContent();
+                $("#content").val(x);
+		        tinyMCE.triggerSave();
                 if (x == null || x == "") {
                     alert('输入状态为空！');
                 }
                 else {
                     $("#submit").prop("disabled", true);
                     var formData = new FormData();
-                    formData.append('content', x);
+                    formData.append('content', $("#content").val());
                     $.ajax({
                         type: "POST",
                         url: $("#form").context.URL + "&post=1",
@@ -138,7 +184,7 @@
                         success: function (data) {
                             console.log(data);
                             $("#result").text("Success.").addClass("alert-success").removeClass("alert-danger");
-                            setTimeout(function(){ window.location.href="/Status/StatusList"; }, 3000);
+                            setTimeout(function(){ window.location.href="/Status/StatusList"; }, 500);
                         },
                         error: function (err) {
                             console.error(err);
@@ -150,13 +196,15 @@
             });
             $('#save-status-draft').click(function () {
                 var x = tinyMCE.editors[0].getContent();
+                $("#content").val(x);
+		        tinyMCE.triggerSave();
                 if (x == null || x == "") {
                     alert('输入状态为空！');
                 }
                 else {
                     $("#submit").prop("disabled", true);
                     var formData = new FormData();
-                    formData.append('content', x);
+                    formData.append('content', $("#content").val());
                     $.ajax({
                         type: "POST",
                         url: $("#form").context.URL + "&draft=1",
@@ -171,7 +219,7 @@
                         success: function (data) {
                             console.log(data);
                             $("#result").text("Success.").addClass("alert-success").removeClass("alert-danger");
-                            setTimeout(function(){ window.location.href="/Status/StatusDraftList"; }, 3000);
+                            setTimeout(function(){ window.location.href="/Status/StatusDraftList"; }, 500);
                         },
                         error: function (err) {
                             console.error(err);
