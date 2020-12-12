@@ -2,7 +2,10 @@
 @functions{
     public string GetAntiXsrfRequestToken()
     {
-        return Xsrf.GetAndStoreTokens(Model.HttpContext).RequestToken;
+        if (Model.HttpContext != null)
+            return Xsrf.GetAndStoreTokens(Model.HttpContext).RequestToken;
+        else
+            return null;
     }
 }
 <!DOCTYPE html>
