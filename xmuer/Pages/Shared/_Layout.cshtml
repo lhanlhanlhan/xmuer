@@ -109,6 +109,8 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+
+        <!-- tinyMCE编辑器初始化 -->
         <script src="https://cdn.bootcdn.net/ajax/libs/tinymce/5.5.1/tinymce.min.js"></script>
         <script>
             tinymce.init({
@@ -117,8 +119,9 @@
                 toolbar: 'undo redo paste | styleselect forecolor backcolor bold italic codesample link table | alignleft aligncenter alignright bullist numlist | code preview help', menubar: false
             });
         </script>
-        <script>
 
+        <!-- tinyMCE编辑器载入内容与获取内容 -->
+        <script>
             function tinyMCEFill(index) {
                 content = $('#html-content-' + (index + 1).toString()).html();
                 tinyMCE.editors[parseInt(index)].setContent(content);
@@ -161,18 +164,18 @@
                 }
             }
         </script>
+
+        <!-- 新建状态页面的发布与暂存按钮 -->
         <script>
             $('#post-status').click(function () {
-                var x = tinyMCE.editors[0].getContent();
-                $("#content").val(x);
-		        tinyMCE.triggerSave();
-                if (x == null || x == "") {
+                var content = tinyMCE.editors[0].getContent();
+                if (content == null || content == "") {
                     alert('输入状态为空！');
                 }
                 else {
                     $("#submit").prop("disabled", true);
                     var formData = new FormData();
-                    formData.append('content', $("#content").val());
+                    formData.append('content', content);
                     $.ajax({
                         type: "POST",
                         url: $("#form").context.URL + "&post=1",
@@ -198,16 +201,14 @@
                 }
             });
             $('#save-status-draft').click(function () {
-                var x = tinyMCE.editors[0].getContent();
-                $("#content").val(x);
-		        tinyMCE.triggerSave();
-                if (x == null || x == "") {
+                var content = tinyMCE.editors[0].getContent();
+                if (content == null || content == "") {
                     alert('输入状态为空！');
                 }
                 else {
                     $("#submit").prop("disabled", true);
                     var formData = new FormData();
-                    formData.append('content', $("#content").val());
+                    formData.append('content', content);
                     $.ajax({
                         type: "POST",
                         url: $("#form").context.URL + "&draft=1",
@@ -233,6 +234,35 @@
                 }
             });
         </script>
+
+        <!-- 点赞的POST请求 -->
+        <script>
+            function likeEvent(index, id) {
+
+                $("#like-" + (index + 1).toString()).prop("disabled", true);
+                $.ajax({
+                    type: "POST",
+                    url: "/home/User/like/" + id,
+                    data: null,//formData,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+
+                    success: function (data) {
+                        console.log(data);
+                        $("#like-" + (index + 1).toString()).children("i").text("(" + data.msg + ")");
+
+                    },
+                    error: function (err) {
+                        console.error(err);
+
+                    }
+                });
+                $("#like-" + (index + 1).toString()).prop("disabled", false);
+
+            }
+        </script>
+
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.1.min.js"

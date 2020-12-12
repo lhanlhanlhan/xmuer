@@ -38,7 +38,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group row">
-                                                    <label for="university" class="col-sm-3 col-form-label">内容</label>
+                                                    <label for="university" class="col-sm-2 col-form-label">内容</label>
                                                     <div class="col-sm-10">
                                                         <textarea class="form-control tinymce"
                                                                   name="content-@(Model.statuses.IndexOf(status) + 1)" id="content-@(Model.statuses.IndexOf(status) + 1)"></textarea>
@@ -58,11 +58,23 @@
                                 <div id="html-content-@(Model.statuses.IndexOf(status) + 1)">
                                     @Html.Raw(System.Net.WebUtility.UrlDecode(@status.Content))
                                 </div>
-                                <div style="text-align:right;">
-                                    <button type="button" class="btn btn-info" style="margin-left:65%" data-toggle="modal" data-target="#exampleModalCenter-@(Model.statuses.IndexOf(status) + 1)" onclick="tinyMCEFill(@Model.statuses.IndexOf(status))">编辑</button>
-                                    <a class="btn btn-danger" href="/Status/StatusEdit?id=@status.ID&delete=1">删除</a>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <button class="btn btn-white" id="like-@(Model.statuses.IndexOf(status)+1)" onclick="likeEvent(@Model.statuses.IndexOf(status),@status.ID)">
+                                            <i class="fa fa-thumbs-up" aria-hidden="true" style="vertical-align: middle;"><span>(@status.Like)</span></i>
+                                        </button>
+                                        <div class="btn btn-white">
+                                            <i class="fa fa-comments" aria-hidden="true" style="vertical-align: middle;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-9" style="text-align:right;">
+                                        <button type="button" class="btn btn-info" style="margin-left:65%" data-toggle="modal" data-target="#exampleModalCenter-@(Model.statuses.IndexOf(status) + 1)" onclick="tinyMCEFill(@Model.statuses.IndexOf(status))">编辑</button>
+                                        <a class="btn btn-danger" href="/Status/StatusEdit?id=@status.ID&delete=1">删除</a>
+                                    </div>
+
                                 </div>
                             </div>
+
                         </div>
                     }
                 }

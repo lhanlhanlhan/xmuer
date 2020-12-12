@@ -129,7 +129,7 @@ namespace xmuer.Controllers
 				update = Context.SaveChanges() > 0;
 			}
 			if (update)
-				return new Message((int)MessageCode.OK, MessageCode.OK.GetDescription());
+				return new Message((int)MessageCode.OK, status.Like.ToString()); //供前端异步获取点赞数
 			return new Message((int)MessageCode.INTERNAL_SERVER_ERR, 
 					MessageCode.INTERNAL_SERVER_ERR.GetDescription());
 		}
