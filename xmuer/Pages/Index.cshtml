@@ -4,12 +4,73 @@
     ViewData["Title"] = "主页";
 }
 
-    <div class="jumbotron">
-        <h1 class="display-3">我爱你，邱明</h1>
-        <p class="lead">因为我还不知道这里要放啥，所以我还是去做 JavaEE 好了</p>
-        <hr class="my-4">
-        <p>明天再做</p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">啊</a>
-        </p>
+@*首页 CSS*@
+<link rel="stylesheet" href="/css/IndexPage.css" />
+
+@*新鲜事*@
+<div class="card border-primary">
+    <h6 class="card-header">
+        新鲜事
+    </h6>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                @*这是新鲜事的内容*@
+                <div class="media fresh-thing">
+                    <img src="images/xmulogo.jpg" class="mr-3" alt="阿这 网络断了" width="50" height="50">
+                    <div class="media-body">
+                        <h6 class="mt-0 mb-1">邱明的小粉丝 1</h6>
+                        <p class="mt-0 mb-1 text-muted">发布于：16/12/2020 18:11</p>
+                        <div class="fresh-thing-content">
+                            希望测试用例全过。
+                        </div>
+                        @*这是新鲜事的按钮*@
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="btnPraise"> 👍 按赞 (2.5k) </button>
+                            <button type="button" class="btn btn-light" id="btnComment"> 💬 评论 (1,203) </button>
+                            <button type="button" class="btn btn-light" id="btnView"> 👀 查看 </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                @*这是新鲜事的内容*@
+                <div class="media fresh-thing">
+                    <img src="images/xmulogo.jpg" class="mr-3" alt="阿这 网络断了" width="50" height="50">
+                    <div class="media-body">
+                        <h6 class="mt-0 mb-1">邱明的小粉丝 2</h6>
+                        <p class="mt-0 mb-1 text-muted">发布于：16/12/2020 18:11</p>
+                        <div class="fresh-thing-content">
+                            希望公开测试用例全过。
+                        </div>
+                        @*这是新鲜事的按钮*@
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="btnPraise"> 👍 按赞 (2.5k) </button>
+                            <button type="button" class="btn btn-light" id="btnComment"> 💬 评论 (1,203) </button>
+                            <button type="button" class="btn btn-light" id="btnView"> 👀 查看 </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                @*这是新鲜事的内容*@
+                <div class="media fresh-thing">
+                    <img src="images/xmulogo.jpg" class="mr-3" alt="阿这 网络断了" width="50" height="50">
+                    <div class="media-body">
+                        <h6 class="mt-0 mb-1">邱明的小粉丝 3</h6>
+                        <p class="mt-0 mb-1 text-muted">发布于：16/12/2020 18:11</p>
+                        <div class="fresh-thing-content">
+                            希望私人测试用例全过。
+                        </div>
+                        @*这是新鲜事的按钮*@
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-light" id="btnPraise"> 👍 按赞 (2.5k) </button>
+                            <button type="button" class="btn btn-light" id="btnComment"> 💬 评论 (1,203) </button>
+                            <button type="button" class="btn btn-light" id="btnView"> 👀 查看 </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
+</div>

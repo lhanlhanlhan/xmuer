@@ -6,8 +6,9 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /* Carousel */
@@ -36,7 +37,7 @@ body {
     }
 }
 
-/* µ¼º½À¸ÑùÊ½ */
+/* å¯¼èˆªæ æ ·å¼ */
 .navbar {
     background-color: #1677b3;
 }
@@ -208,9 +209,9 @@ body {
         background-color: #134857;
     }
 
-/* µ¼º½À¸ÑùÊ½½áÊø*/
+/* å¯¼èˆªæ æ ·å¼ç»“æŸ*/
 
-/* ×ó²àµ¼º½À¸ÑùÊ½ */
+/* å·¦ä¾§å¯¼èˆªæ æ ·å¼ */
 #wrapper {
     overflow-x: hidden;
 }
@@ -222,7 +223,7 @@ body {
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
-    background-color: #165479; /*×ó²àµ¼º½À¸Í·²¿ÑÕÉ«*/
+    background-color: #165479; /*å·¦ä¾§å¯¼èˆªæ å¤´éƒ¨é¢œè‰²*/
 }
 
     #sidebar-wrapper .sidebar-heading {
@@ -235,7 +236,6 @@ body {
     }
 
 #page-content-wrapper {
-    margin-top: 20px;
     min-width: 100vw;
 }
 
@@ -322,8 +322,8 @@ body {
 
         .sidebar-menu > li:hover > a, .sidebar-menu > li.active > a {
             color: #fff;
-            background: #134857; /*Ñ¡ÖĞµÄ±³¾°É«*/
-            border-left-color: #3c8dbc; /*Ñ¡ÖĞ¿é¿éµÄ×ó±ßÑÕÉ«*/
+            background: #134857; /*é€‰ä¸­çš„èƒŒæ™¯è‰²*/
+            border-left-color: #3c8dbc; /*é€‰ä¸­å—å—çš„å·¦è¾¹é¢œè‰²*/
         }
 
         .sidebar-menu > li .label,
@@ -336,7 +336,7 @@ body {
         padding: 10px 25px 10px 15px;
         font-size: 12px;
         color: #ffffff;
-        background: #165479; /*×ó²àµ¼º½À¸Í·²¿ÑÕÉ«*/
+        background: #165479; /*å·¦ä¾§å¯¼èˆªæ å¤´éƒ¨é¢œè‰²*/
     }
 
     .sidebar-menu li > a > .fa-angle-left {
@@ -360,4 +360,4 @@ body {
         text-decoration: none;
     }
 
-/* ×ó²àµ¼º½À¸ÑùÊ½½áÊø */
+/* å·¦ä¾§å¯¼èˆªæ æ ·å¼ç»“æŸ */
