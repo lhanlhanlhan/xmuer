@@ -39,9 +39,12 @@ namespace xmuer.Pages.Homepage
             {
                 // ��ȡ��ǰ��¼���û�
                 user = _db.Users.Find(id);
-                WelcomeMessage = user.userName;
-                StudySchool = user.university != null ? user.university : "...";
-                return Page();
+                if (user != null)
+                {
+                    WelcomeMessage = user.userName;
+                    StudySchool = user.university != null ? user.university : "...";
+                    return Page();
+                }
             }
             // ��ȡ��ǰ��¼���û�
             string tmp = HttpContext.Session.GetString("userId");
