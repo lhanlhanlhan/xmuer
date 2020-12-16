@@ -33,6 +33,35 @@ namespace xmuer.Controllers
 
 		#endregion
 
+		[HttpGet("share")]
+		public IActionResult GetShareThing([FromQuery(Name = "size")] int size)
+		{
+
+			ShareListModel shareListModel = new ShareListModel();
+
+			IEnumerable<Status> statusesIE = Context.Statuses.ToList();
+			List<Status> statuses = new List<Status>();
+			if (statuses.Count() < size)
+				statuses = statusesIE.ToList();
+			else
+				statuses = statusesIE.ToList().GetRange(0, size);
+
+			List<Share> shares = new List<Share>();
+
+			foreach(Status status in statuses)
+			{
+				Share share = new Share();
+				share.ShareContent = status.Content;
+				User user = Context.Users.SingleOrDefault(s => s.ID == status.UserID);
+				share.UserId = user.ID;
+				share.Avatar = user.Avatar;
+			}
+			shareListModel.shares = shares;
+
+			return View("Pages/User/UserList.cshtml", shareListModel);
+		}
+
+
 		[HttpGet]
 		public IActionResult GetUsers()
 		{
@@ -47,6 +76,7 @@ namespace xmuer.Controllers
 			return View("Pages/User/UserList.cshtml", userListModel);
 		}
 
+
 		[HttpGet("name")]
 		public IActionResult GetUsersByName([FromForm] string name)
 		{
@@ -57,6 +87,7 @@ namespace xmuer.Controllers
 			{
 				userListModel.users.AddRange(userIE);
 			}
+
 
 			return View("Pages/User/UserList.cshtml", userListModel);
 		}

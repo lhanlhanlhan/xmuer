@@ -50,7 +50,7 @@ namespace xmuer.Controllers.Home
 				albumListModel.albums.AddRange(albumIE);
 			}
 
-			return View("Pages/Album/AlbumList.cshtml",albumListModel);
+			return View("Pages/Album/AlbumList.cshtml", albumListModel);
 		}
 
 		[HttpPost("{id}")]
