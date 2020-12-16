@@ -55,6 +55,8 @@ namespace xmuer.Controllers
 				User user = Context.Users.SingleOrDefault(s => s.ID == status.UserID);
 				share.UserId = user.ID;
 				share.Avatar = user.Avatar;
+				share.like = status.Like;
+				share.commentCount = Context.Comments.Where(s => s.StatusID == status.ID).Count();
 			}
 			shareListModel.shares = shares;
 

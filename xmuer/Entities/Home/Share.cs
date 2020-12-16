@@ -12,5 +12,9 @@ namespace xmuer.Entities.Home
 		public string ShareContent { get; set; }
 
 		public int  UserId { get; set; }
+
+		public int like { get; set; }
+
+		public int commentCount { get; set; }
 	}
 }
