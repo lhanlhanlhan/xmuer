@@ -51,7 +51,28 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `xmuer`.`user` (`id`, `user_name`, `password`, `state`, `type`, `real_name`, `gender`, `birthday`, `hometown`, `email`, `mobile`, `university`, `high_school`, `junior_high_school`, `primary_school`, `hobby_music`, `hobby_book`, `hobby_movie`, `hobby_game`, `hobby_anime`, `hobby_sport`, `hobby_other`, `student_no`, `college`, `department`, `major`, `avatar`) VALUES ('1', 'wwc', '123', '1', '1', 'wang', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '~/album/timg.png');
+INSERT INTO `xmuer`.`user` (`id`, `user_name`, `password`, `state`, `type`, `real_name`, `gender`, `birthday`, `hometown`, `email`, `mobile`, `university`, `high_school`, `junior_high_school`, `primary_school`, `hobby_music`, `hobby_book`, `hobby_movie`, `hobby_game`, `hobby_anime`, `hobby_sport`, `hobby_other`, `student_no`, `college`, `department`, `major`, `avatar`) 
+VALUES 
+('1', 'wwc1', '123456', '1', '1', 'wang1', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u1.jpg'),
+('2', 'wwc2', '123456', '1', '1', 'wang2', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u2.jpg'),
+('3', 'wwc3', '123456', '1', '1', 'wang3', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u3.jpg'),
+('4', 'wwc4', '123456', '1', '1', 'wang4', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u4.jpg'),
+('5', 'wwc5', '123456', '1', '1', 'wang5', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u5.jpg'),
+('6', 'wwc6', '123456', '1', '1', 'wang6', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u6.jpg'),
+('7', 'wwc7', '123456', '1', '1', 'wang7', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u7.jpg'),
+('8', 'wwc8', '123456', '1', '1', 'wang8', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u8.jpg'),
+('9', 'wwc9', '123456', '1', '1', 'wang9', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u9.jpg'),
+('10', 'wwc10', '123456', '1', '1', 'wang10', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u10.jpg'),
+('11', 'wwc11', '123456', '1', '1', 'wang11', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u11.jpg'),
+('12', 'wwc12', '123456', '1', '1', 'wang12', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u12.jpg'),
+('13', 'wwc13', '123456', '1', '1', 'wang13', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u13.jpg'),
+('14', 'wwc14', '123456', '1', '1', 'wang14', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u14.jpg'),
+('15', 'wwc15', '123456', '1', '1', 'wang15', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u15.jpg'),
+('16', 'wwc16', '123456', '1', '1', 'wang16', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u16.jpg'),
+('17', 'wwc17', '123456', '1', '1', 'wang17', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u17.jpg'),
+('18', 'wwc18', '123456', '1', '1', 'wang18', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u18.jpg'),
+('19', 'wwc19', '123456', '1', '1', 'wang19', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u19.jpg'),
+('20', 'wwc20', '123456', '1', '1', 'wang20', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u20.jpg');
 
 DROP TABLE IF EXISTS `album`;
 create table album(

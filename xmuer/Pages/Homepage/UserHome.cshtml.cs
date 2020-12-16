@@ -24,6 +24,7 @@ namespace xmuer.Pages.Homepage
 
         public string WelcomeMessage { get; set; }
         public string StudySchool { get; set; }
+        public string imgUrl { get; set; }
 
         public IActionResult OnGet()
         {
@@ -43,6 +44,7 @@ namespace xmuer.Pages.Homepage
                 {
                     WelcomeMessage = user.userName;
                     StudySchool = user.university != null ? user.university : "...";
+                    imgUrl = user.Avatar;
                     return Page();
                 }
             }
@@ -56,6 +58,7 @@ namespace xmuer.Pages.Homepage
             user = _db.Users.Find(userId);
             WelcomeMessage = user.userName;
             StudySchool = user.university != null ? user.university : "...";
+            imgUrl = user.Avatar;
             return Page();
         }
     }
