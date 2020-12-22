@@ -14,7 +14,17 @@
             gender = "其他";
             break;
     };
+    ViewData["Title"] = "我的资料";
 }
+
+@*个人资料页面 JS*@
+<script>
+    $(document).ready(() => {
+        // 添加左边菜单栏选中
+        $('#mnuPersonalCentre').addClass("active");
+        $('#mnuPersonalInfo').addClass("active");
+    })
+</script>
 
 <div class="container">
     <div class="row">
@@ -332,5 +342,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

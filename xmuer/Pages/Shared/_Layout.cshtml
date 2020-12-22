@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>XMUer > @ViewData["Title"]</title>
 
+    @* CSS *@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -25,6 +26,24 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    @* JS Lib *@
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 </head>
 <body>
@@ -65,27 +84,45 @@
             <section style="width: 200px">
                 <ul class="sidebar-menu">
                     <li class="sidebar-header">欢迎您，Han Li</li>
-                    <li>
+                    <li id="mnuHome">
                         <a href="/">
                             <i class="fa fa-home"></i> <span>首页</span> <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
-                    <li>
-                        <a href="/Homepage/UserHome">
-                            <i class="fa fa-user"></i> <span>个人主页</span> <i class="fa fa-angle-right pull-right"></i>
+                    <li id="mnuPersonalCentre" class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span class="menu-text">个人中心</span>
+                            <i class="fa fa-angle-right pull-right"></i>
                         </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li id="mnuPersonalHome">
+                                    <a href="~/Homepage/UserHome">
+                                        <i class="fa fa-book"></i> <span>个人主页</span> <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li id="mnuPersonalInfo">
+                                    <a href="~/Homepage/UserInfo">
+                                        <i class="fa fa-table"></i> <span>我的资料</span> <i class="fa fa-angle-right pull-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-                    <li>
+                    <li id="mnuMyState">
                         <a href="/Status/StatusList">
                             <i class="fa fa-file-text"></i> <span>我的状态</span> <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
-                    <li>
+                    <li id="mnuMyAlbum">
                         <a href="#2">
                             <i class="fa fa-photo"></i> <span>我的相册</span> <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
-                    <li>
+                    <li id="mnuFriends">
                         <a href="#3">
                             <i class="fa fa-users"></i> <span>好友</span> <i class="fa fa-angle-right pull-right"></i>
                         </a>
@@ -105,23 +142,24 @@
         </div>
     </div>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+    @* JS *@
+    <!-- 左侧导航栏 -->
+    <script>
+        $.sidebarMenu($('.sidebar-menu'))
+    </script>
 
-        <!-- tinyMCE编辑器初始化 -->
-        <script src="https://cdn.bootcdn.net/ajax/libs/tinymce/5.5.1/tinymce.min.js"></script>
-        <script>
-            tinymce.init({
-                selector: '.tinymce',
-                plugins: "codesample table link paste code preview help",
-                toolbar: 'undo redo paste | styleselect forecolor backcolor bold italic codesample link table | alignleft aligncenter alignright bullist numlist | code preview help', menubar: false
-            });
-        </script>
+    <!-- tinyMCE编辑器初始化 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/tinymce/5.5.1/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '.tinymce',
+            plugins: "codesample table link paste code preview help",
+            toolbar: 'undo redo paste | styleselect forecolor backcolor bold italic codesample link table | alignleft aligncenter alignright bullist numlist | code preview help', menubar: false
+        });
+    </script>
 
-        <!-- tinyMCE编辑器载入内容与获取内容 -->
-        <script>
+    <!-- tinyMCE编辑器载入内容与获取内容 -->
+    <script>
             function tinyMCEFill(index) {
                 content = $('#html-content-' + (index + 1).toString()).html();
                 tinyMCE.editors[parseInt(index)].setContent(content);
@@ -163,10 +201,10 @@
 
                 }
             }
-        </script>
+    </script>
 
-        <!-- 新建状态页面的发布与暂存按钮 -->
-        <script>
+    <!-- 新建状态页面的发布与暂存按钮 -->
+    <script>
             $('#post-status').click(function () {
                 var content = tinyMCE.editors[0].getContent();
                 if (content == null || content == "") {
@@ -233,48 +271,35 @@
                     $("#submit").prop("disabled", false);
                 }
             });
-        </script>
+    </script>
 
-        <!-- 点赞的POST请求 -->
-        <script>
-            function likeEvent(index, id) {
+    <!-- 点赞的POST请求 -->
+    <script>
+        function likeEvent(index, id) {
 
-                $("#like-" + (index + 1).toString()).prop("disabled", true);
-                $.ajax({
-                    type: "POST",
-                    url: "/home/User/like/" + id,
-                    data: null,//formData,
-                    cache: false,
-                    processData: false,
-                    contentType: false,
+            $("#like-" + (index + 1).toString()).prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "/home/User/like/" + id,
+                data: null,//formData,
+                cache: false,
+                processData: false,
+                contentType: false,
 
-                    success: function (data) {
-                        console.log(data);
-                        $("#like-" + (index + 1).toString()).children("i").text("(" + data.msg + ")");
+                success: function (data) {
+                    console.log(data);
+                    $("#like-" + (index + 1).toString()).children("i").text("(" + data.msg + ")");
 
-                    },
-                    error: function (err) {
-                        console.error(err);
+                },
+                error: function (err) {
+                    console.error(err);
 
-                    }
-                });
-                $("#like-" + (index + 1).toString()).prop("disabled", false);
+                }
+            });
+            $("#like-" + (index + 1).toString()).prop("disabled", false);
 
-            }
-        </script>
-
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"></script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+        }
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>

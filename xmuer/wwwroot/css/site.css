@@ -6,9 +6,9 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* Carousel */
@@ -237,6 +237,7 @@ body {
 
 #page-content-wrapper {
     min-width: 100vw;
+    padding: 10px 10px 10px 10px;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -360,4 +361,39 @@ body {
         text-decoration: none;
     }
 
+    /* 关于子菜单的定义 */
+    .sidebar-menu .sidebar-submenu {
+        display: none;
+        list-style: none;
+        margin: 0 1px;
+        background: #2c3b41;
+    }
+
+        .sidebar-menu .sidebar-submenu > ul > li {
+            list-style: none;
+        }
+
+        .sidebar-menu .sidebar-submenu > ul > li > a {
+            padding: 10px 25px 10px 5px;
+            display: block;
+            font-size: 16px;
+            color: #a8a8a8;
+        }
+
+            .sidebar-menu .sidebar-submenu > ul > li > a > .fa {
+                width: 20px;
+            }
+
+            .sidebar-menu .sidebar-submenu > ul > li > a > .fa-angle-left,
+            .sidebar-menu .sidebar-submenu > ul > li > a > .fa-angle-down {
+                width: auto;
+            }
+
+        .sidebar-menu .sidebar-submenu > ul > li.active > a,
+        .sidebar-menu .sidebar-submenu > ul > li > a:hover {
+            color: #fff;
+        }
+
 /* 左侧导航栏样式结束 */
+
+/* Bootstrap 卡片集合样式定义 */
