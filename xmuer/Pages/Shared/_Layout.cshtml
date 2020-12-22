@@ -1,4 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@using Microsoft.AspNetCore.Http
 @functions{
     public string GetAntiXsrfRequestToken()
     {
@@ -61,19 +62,26 @@
             </li>
         </ul>
         <!-- 用户功能 -->
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Han Li
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">个人中心</a>
-                    <a class="dropdown-item" href="#">账号设置</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">登出</a>
-                </div>
-            </li>
-        </ul>
+        @{
+            string name = Context.Session.GetString("userName");
+            if (name != null)
+            {
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @name
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="~/Homepage/UserHome">个人中心</a>
+                            <a class="dropdown-item" href="~/Homepage/UserInfo">账号设置</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">登出</a>
+                        </div>
+                    </li>
+                </ul>
+            }
+        }
+
     </nav>
     <!-- 询问 Cookie 接受 -->
     <partial name="_CookieConsentPartial" />
@@ -114,11 +122,11 @@
                     </li>
                     <li id="mnuMyState">
                         <a href="/Status/StatusList">
-                            <i class="fa fa-file-text"></i> <span>我的状态</span> <i class="fa fa-angle-right pull-right"></i>
+                            <i class="fa fa-file-text"></i> <span>状态分享</span> <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
                     <li id="mnuMyAlbum">
-                        <a href="#2">
+                        <a href="/Album/AlbumList">
                             <i class="fa fa-photo"></i> <span>我的相册</span> <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>

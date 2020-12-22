@@ -1,30 +1,92 @@
-﻿@using xmuer.Models.Home
+﻿@page
+@model xmuer.Models.Home.AlbumListModel
+@*相册 JS*@
+<script>
+    $(document).ready(() => {
+        // 添加左边菜单栏选中
+        $('#mnuMyAlbum').addClass("active");
+    })
+</script>
 
-@model AlbumListModel
-
-<div class="container">
-	<div class="photoHeader">
-		<div class="btnContainer">
-			<span class="photoTitle">最近照片</span>
-			<span class="photoTitle">我的相册</span>
-			<button class="uploadBtn">上传照片</button>
-			<button class="mybtn">新建相册</button>
-		</div>
-	</div>
-
-
-	<div class="photoContainer">
-		@{ foreach (var album in Model.albums)
-			{
-				<div class="photoItem">
-					<img src="@Url.Content(@album.Picture)" height="200" width="150" />
-					<span>
-						@album.Name
-					</span>
-				</div>
-			}
-		}
-	</div>
-
-
+@*我的相册 页面*@
+<div class="card">
+    <div class="card-header">
+        我的相册
+        <button type="button" class="btn btn-primary ml-3" data-toggle="collapse" data-target="#uploadPhotoCollapse" aria-expanded="false" aria-controls="uploadPhotoCollapse">
+            上传照片
+        </button>
+        <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#createAlbumCollapse" aria-expanded="false" aria-controls="createAlbumCollapse">
+            新建相册
+        </button>
+    </div>
+    <div class="card-body">
+        @*上传相片框框*@
+        <div class="collapse mb-3" id="uploadPhotoCollapse">
+            <div class="card card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="selAlbum">选择相册</label>
+                        <select class="form-control" id="selAlbum">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">点击 "Browse" 以选择图片文件</label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary">上传</button>
+                </form>
+            </div>
+        </div>
+        @*新建相册框框*@
+        <div class="collapse mb-3" id="createAlbumCollapse">
+            <div class="card card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="selAlbum">新相册名</label>
+                        <input type="text" class="form-control" id="txtAlbumName">
+                    </div>
+                    <button type="button" class="btn btn-warning">创建</button>
+                </form>
+            </div>
+        </div>
+        @*显示相册*@
+        <div class="card-columns" style="column-count: 3">
+            @{ if (Model.albums.Count > 0)
+                {
+                    foreach (var album in Model.albums)
+                    {
+                        @*相册视图*@
+                        <div class="card">
+                            <img src="@Url.Content(@album.Picture)" class="img-fluid" />
+                            <div class="card-body media-body">
+                                <a href="#" class="card-title text-black-50">@album.Name</a>
+                                <!--<p class="card-text">这是示例相册：1</p>-->
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="card">
+                    <img src="~/images/xmu.1.jpg" class="img-fluid" />
+                    <div class="card-body media-body">
+                        <a href="#" class="card-title text-black-50">厦门大学相册1</a>
+                        <p class="card-text">这是示例相册：1</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/images/xmu.2.jpg" class="img-fluid" />
+                    <div class="card-body media-body">
+                        <a href="#" class="card-title text-black-50">厦门大学相册1</a>
+                        <p class="card-text">这是示例相册：2</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
