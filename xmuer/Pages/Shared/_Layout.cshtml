@@ -51,37 +51,43 @@
     <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
         <!-- 主页按钮 -->
-        <a asp-page="/Index" class="navbar-brand mb-0 h1">XMUer</a>
-        <!-- 功能按钮列表 -->
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 han-navbar-list">
-            <li class="nav-item">
-                <a class="nav-link" asp-page="/Index">主页</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-page="/About">关于站点</a>
-            </li>
-        </ul>
-        <!-- 用户功能 -->
-        @{
-            string name = Context.Session.GetString("userName");
-            if (name != null)
-            {
-                <ul class="navbar-nav navbar-right">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @name
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="~/Homepage/UserHome">个人中心</a>
-                            <a class="dropdown-item" href="~/Homepage/UserInfo">账号设置</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">登出</a>
-                        </div>
-                    </li>
-                </ul>
-            }
-        }
+        <span class='navbar-brand'><strong>XMUer</strong></span>
+        <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#collapse' aria-controls="collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <!-- 功能按钮列表 -->
+        <div class="navbar-collapse collapse" id="collapse">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 han-navbar-list">
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Index">主页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/About">关于站点</a>
+                </li>
+            </ul>
+
+            <!-- 用户功能 -->
+            @{
+                string name = Context.Session.GetString("userName");
+                if (name != null)
+                {
+                    <ul class="navbar-nav navbar-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @name
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="~/Homepage/UserHome">个人中心</a>
+                                <a class="dropdown-item" href="~/Homepage/UserInfo">账号设置</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">登出</a>
+                            </div>
+                        </li>
+                    </ul>
+                }
+            }
+        </div>
     </nav>
     <!-- 询问 Cookie 接受 -->
     <partial name="_CookieConsentPartial" />
