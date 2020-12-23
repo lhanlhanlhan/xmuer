@@ -98,7 +98,7 @@ CREATE TABLE `status`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `user_id` int(0) NULL DEFAULT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `state` tinyint(0) NULL DEFAULT NULL, --1：草稿 2：发布 -1：删除
+  `state` tinyint(0) NULL DEFAULT NULL, -- 1：草稿 2：发布 -1：删除
   `like` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
