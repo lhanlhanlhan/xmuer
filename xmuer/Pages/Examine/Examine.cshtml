@@ -1,0 +1,35 @@
+﻿@page
+@model xmuer.Pages.Examine.ExamineModel
+@{}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">用户注册用名</th>
+            <th scope="col">注册密码等级</th>
+            <th scope="col">是否通过审核</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var user in Model.users)
+            {
+
+                <tr>
+                    
+                        <th scope="row">@(Model.users.IndexOf(user)+1)</th>
+                        <td>@user.userName</td>
+                        <td>@Model.passwordGrade(user.password)</td>
+    
+                        <td>
+                            <a type="button" class="btn btn-success"  href="?id=@(Model.users.IndexOf(user))&accept=1">通过</a>
+                            <a type="button" class="btn btn-danger" href="?id=@(Model.users.IndexOf(user))&accept=0">拒绝</a>
+                        </td>
+                    
+                </tr>
+
+            }
+
+        }
+    </tbody>
+</table>

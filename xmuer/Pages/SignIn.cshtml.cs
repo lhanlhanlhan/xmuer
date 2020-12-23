@@ -48,6 +48,11 @@ namespace xmuer.Pages.Homepage
                     HttpContext.Session.Set("userId", System.Text.Encoding.Default.GetBytes(user.ID.ToString()));
                     HttpContext.Session.Set("userName", System.Text.Encoding.Default.GetBytes(user.userName));
                 }
+
+                if (user.type == 100) {
+                    return Redirect("/Examine/Examine");
+                }
+
                 return Redirect("/Homepage/UserHome");
             }
             catch

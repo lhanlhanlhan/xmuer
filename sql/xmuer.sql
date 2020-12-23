@@ -52,6 +52,10 @@ CREATE TABLE `user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 INSERT INTO `xmuer`.`user` (`id`, `user_name`, `password`, `state`, `type`, `real_name`, `gender`, `birthday`, `hometown`, `email`, `mobile`, `university`, `high_school`, `junior_high_school`, `primary_school`, `hobby_music`, `hobby_book`, `hobby_movie`, `hobby_game`, `hobby_anime`, `hobby_sport`, `hobby_other`, `student_no`, `college`, `department`, `major`, `avatar`) 
+VALUES
+('0', 'Admin', 'IloveDr.Song', '1', '100', 'I love Song Liang', '1', '2000-01-01', 'xm', 'xmuer@stu,edu.xmu.com', '1234567890', 'xmu', 'xmss', 'xmss', 'xmss', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u0.jpg');
+
+INSERT INTO `xmuer`.`user` (`id`, `user_name`, `password`, `state`, `type`, `real_name`, `gender`, `birthday`, `hometown`, `email`, `mobile`, `university`, `high_school`, `junior_high_school`, `primary_school`, `hobby_music`, `hobby_book`, `hobby_movie`, `hobby_game`, `hobby_anime`, `hobby_sport`, `hobby_other`, `student_no`, `college`, `department`, `major`, `avatar`) 
 VALUES 
 ('1', 'wwc1', '123456', '1', '1', 'wang1', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u1.jpg'),
 ('2', 'wwc2', '123456', '1', '1', 'wang2', '1', '1999-11-26', 'nj', '123@321.com', '12312344321', 'xmu', 'njssz', 'njsr', 'njspl', 'mm', 'bb', 'mm', 'ga', 'an', 'sp', 'ot', '123321', '信息学院', '软件工程', '软件工程', '/ava/u2.jpg'),
@@ -81,10 +85,12 @@ create table album(
 	picture VARCHAR(64) DEFAULT NULL,
 	name VARCHAR(64) DEFAULT NULL
 );
+
 insert into album values(1,1,'~/album/timg.png','头像相册');
 insert into album values(2,1,'~/album/timg.png','手机相册');
 insert into album values(3,1,'~/album/timg.png','电脑相册');
 insert into album values(5,1,'~/album/timg.png','我的相册');
+
 
 DROP TABLE IF EXISTS `photo`;
 create table photo(
@@ -98,7 +104,7 @@ CREATE TABLE `status`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `user_id` int(0) NULL DEFAULT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `state` tinyint(0) NULL DEFAULT NULL, -- 1：草稿 2：发布 -1：删除
+  `state` tinyint(0) NULL DEFAULT NULL, 
   `like` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
