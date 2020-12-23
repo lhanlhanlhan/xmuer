@@ -15,14 +15,24 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="./StatusList">我的状态</a>
+                    <a class="nav-link active" href='./StatusList@(HttpContext.Request.Query.ContainsKey("id")?"?id=" + HttpContext.Request.Query["id"]:"")'>状态</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./StatusDraftList">草稿箱</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./StatusEdit?new=1">新建</a>
-                </li>
+                @{ if (!HttpContext.Request.Query.ContainsKey("id"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="./StatusDraftList">草稿箱</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./StatusEdit?new=1">新建</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href='../HomePage/UserHome?id=@(HttpContext.Request.Query["id"])'>Ta的主页</a>
+                        </li>
+                    }
+                }
             </ul>
         </div>
         <div class="card-body">
