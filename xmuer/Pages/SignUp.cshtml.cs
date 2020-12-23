@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace xmuer.Pages.Homepage
 
         public string userName { get; set; }
         public string userPass { get; set; }
+        public string userPassAgain { get; set; }
 
         public SignUpModel(MyContext db)
         {
@@ -34,9 +36,13 @@ namespace xmuer.Pages.Homepage
             while (enumerator.MoveNext())
             {
                 KeyValuePair<string, StringValues> single = enumerator.Current;
-                if (single.Key == "userName") newUser.userName = single.Value.ToString();
-                if (single.Key == "userPass") newUser.password = single.Value.ToString();
+                if (single.Key == "userName") userName = single.Value.ToString();
+                if (single.Key == "userPass") userPass = single.Value.ToString();
+                if (single.Key == "userPassAgain") userPassAgain = single.Value.ToString();
             }
+            if (userPass != userPassAgain) return Content("两次密码不一致");
+            newUser.userName = userName;
+            newUser.password = userPass;
             newUser.type = 1;
             newUser.state = 0;
             try

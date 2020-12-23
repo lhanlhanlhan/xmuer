@@ -21,24 +21,24 @@
                         <h4 class="card-title text-center">欢迎加入 XMUer 大家庭！</h4>
                         <form method="post" class="my-login-validation">
                             <div class="form-group row">
-                                <input type="text" class="form-control" id="userName" placeholder="用户名" asp-for="userName">
+                                <input type="text" class="form-control" id="userName" placeholder="用户名" asp-for="userName" required>
                                 @* 用户名无效时显示 *@
                                 <div class="invalid-feedback">
                                     用户名无效
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <input type="password" class="form-control" id="userPass" placeholder="设置密码" asp-for="userPass">
+                                <input type="password" class="form-control" id="userPass" placeholder="设置密码" asp-for="userPass" required>
                                 @* 密码无效时显示 *@
                                 <div class="invalid-feedback">
                                     请输入密码
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <input type="password" class="form-control" id="userPassAgain" placeholder="请再次输入密码" asp-for="userPass">
+                                <input type="password" class="form-control" id="userPassAgain" placeholder="请再次输入密码" asp-for="userPassAgain" required>
                                 @* 密码无效时显示 *@
                                 <div class="invalid-feedback">
-                                    请输入密码
+                                    请再次输入密码
                                 </div>
                             </div>
                             <div class="form-group m-0">
