@@ -40,6 +40,17 @@ namespace xmuer.Mapper.Implement
 			return Context.Albums;
 		}
 
+		//修改相册封面
+		public bool ModefiyAlbumPictureByID(int id, string picture)
+		{
+			var upState = false;
+
+
+			var album = Context.Albums.SingleOrDefault(s => s.ID == id);
+			album.Picture = picture;
+			upState = Context.SaveChanges() > 0;
+			return upState;
+		}
 		//通过ID取相册
 		public Album GetAlbumByID(int id)
 		{

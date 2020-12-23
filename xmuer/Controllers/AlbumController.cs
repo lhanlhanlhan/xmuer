@@ -66,14 +66,16 @@ namespace xmuer.Controllers.Home
 			var filePath = "wwwroot/album/" + iFormFile.FileName;
 			//Console.WriteLine(filePath);
 			//Console.WriteLine(iFormFile.FileName);
-			using (var stream = new FileStream(filePath,
-			FileMode.Create))
+			using (var stream = new FileStream(filePath,FileMode.Create))
 			{
 				await iFormFile.CopyToAsync(stream);
 			}
 			Photo photo = new Photo();
 			photo.Picture = "~/album/" + iFormFile.FileName;
 			photo.AlbumID = id;
+
+			Album album = AlbumService.GetAlbumByID(id);
+			AlbumService.ModefiyAlbumPictureByID(id, photo.Picture);
 			message = PhotoService.CreatePhoto(photo);
 			return new JsonResult(message);
 		}
@@ -84,11 +86,14 @@ namespace xmuer.Controllers.Home
 			if (album.Picture == null)
 				album.Picture = "~/album/timg.png";
 			string tmp = HttpContext.Session.GetString("userId");
-			int userId = Convert.ToInt32(tmp);
+			if (tmp == "" || tmp == null)
+			{
+				return Redirect("/SignIn");
+			}
+			var userId = Convert.ToInt32(tmp);
 			album.UserID = userId;
 			Message message = AlbumService.CreateAlbum(album);
 			return new JsonResult(message);
 		}
-
 	}
 }
