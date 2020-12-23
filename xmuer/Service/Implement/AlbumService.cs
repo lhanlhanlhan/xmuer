@@ -77,13 +77,13 @@ namespace xmuer.Service.Implement
 
 			if (usersIE != null)
 			{
-				users = users.ToList();
+				users = usersIE.ToList();
 			}
 			else
 				return null;
 
 			pageIndex = pageIndex < 1 ? 1 : pageIndex;
-
+			pageLimit = pageLimit < 1 ? 10 : pageLimit;
 			if (users.Count() <= (pageIndex - 1) * pageLimit)
 				return null;
 

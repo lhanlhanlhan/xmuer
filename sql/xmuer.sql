@@ -84,7 +84,7 @@ create table album(
 insert into album values(1,1,'~/album/timg.png','头像相册');
 insert into album values(2,1,'~/album/timg.png','手机相册');
 insert into album values(3,1,'~/album/timg.png','电脑相册');
-insert into album values(5,1,'wwwroot/album/timg.png','我的相册');
+insert into album values(5,1,'~/album/timg.png','我的相册');
 
 DROP TABLE IF EXISTS `photo`;
 create table photo(

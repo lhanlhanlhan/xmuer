@@ -25,5 +25,7 @@ namespace xmuer.Entities.Home
 
         [Column("like")]
         public int Like { get; set; }
+
+
     }
 }

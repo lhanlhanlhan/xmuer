@@ -41,7 +41,11 @@ namespace xmuer.Controllers.Home
 			AlbumListModel albumListModel = new AlbumListModel();
 
 			string tmp = HttpContext.Session.GetString("userId");
-			int userId = Convert.ToInt32(tmp);
+			if (tmp == "" || tmp == null)
+			{
+				return Redirect("/SignIn");
+			}
+			var userId = Convert.ToInt32(tmp);
 
 			IEnumerable<Album> albumIE = AlbumService.GetAlbumsByUserID(userId,pageLimit,pageIndex);
 			
@@ -49,7 +53,6 @@ namespace xmuer.Controllers.Home
 			{
 				albumListModel.albums.AddRange(albumIE);
 			}
-
 			return View("Pages/Album/AlbumList.cshtml", albumListModel);
 		}
 
@@ -61,8 +64,8 @@ namespace xmuer.Controllers.Home
 				return new JsonResult(new Message((int)MessageCode.UPLOAD_FILE_EMPTY,
 					MessageCode.UPLOAD_FILE_EMPTY.GetDescription()));
 			var filePath = "wwwroot/album/" + iFormFile.FileName;
-			Console.WriteLine(filePath);
-			Console.WriteLine(iFormFile.FileName);
+			//Console.WriteLine(filePath);
+			//Console.WriteLine(iFormFile.FileName);
 			using (var stream = new FileStream(filePath,
 			FileMode.Create))
 			{

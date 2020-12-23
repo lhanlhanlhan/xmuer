@@ -1,4 +1,4 @@
-﻿@page
+﻿
 @model xmuer.Models.Home.AlbumListModel
 @*相册 JS*@
 <script>
@@ -26,13 +26,17 @@
                 <form>
                     <div class="form-group">
                         <label for="selAlbum">选择相册</label>
-                        <select class="form-control" id="selAlbum">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+						<select class="form-control" id="selAlbum">
+							@{
+								if (Model.albums.Count > 0)
+								{
+									foreach (var album in Model.albums)
+									{
+										<option>@album.Name</option>
+									}
+								}
+							}
+						</select>
                     </div>
                     <div class="form-group">
                         <div class="custom-file">
