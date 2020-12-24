@@ -39,7 +39,7 @@ body {
 
 /* 导航栏样式 */
 .navbar {
-    background-color: #1677b3;
+    background-color: #274f7a;
 }
 
     .navbar .navbar-brand {
@@ -76,7 +76,7 @@ body {
         }
 
     .navbar .navbar-nav .dropdown-menu {
-        background-color: #1677b3;
+        background-color: #274f7a;
         border-color: #134857;
     }
 
@@ -223,7 +223,7 @@ body {
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
-    background-color: #165479; /*左侧导航栏头部颜色*/
+    background-color: #274f7a; /*左侧导航栏头部颜色*/
 }
 
     #sidebar-wrapper .sidebar-heading {
@@ -301,7 +301,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    background-color: #1772b4;
+    background-color: #3a75b4;
 }
 
     .sidebar-menu > li {
@@ -323,8 +323,8 @@ body {
 
         .sidebar-menu > li:hover > a, .sidebar-menu > li.active > a {
             color: #fff;
-            background: #134857; /*选中的背景色*/
-            border-left-color: #3c8dbc; /*选中块块的左边颜色*/
+            background: #274f7a; /*选中的背景色*/
+            border-left-color: #2d5c8d; /*选中块块的左边颜色*/
         }
 
         .sidebar-menu > li .label,
@@ -337,7 +337,7 @@ body {
         padding: 10px 25px 10px 15px;
         font-size: 12px;
         color: #ffffff;
-        background: #165479; /*左侧导航栏头部颜色*/
+        background: #2d5c8d; /*左侧导航栏头部颜色*/
     }
 
     .sidebar-menu li > a > .fa-angle-left {
