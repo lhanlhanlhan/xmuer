@@ -102,7 +102,7 @@ body {
     .navbar .navbar-nav .nav-item.show .nav-link:hover,
     .navbar .navbar-nav .nav-item.show .nav-link:focus {
         color: #ffffff;
-        background-color: #134857;
+        background-color: #3a75b4;
     }
 
     .navbar .navbar-toggler {
