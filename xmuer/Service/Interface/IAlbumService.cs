@@ -26,6 +26,9 @@ namespace xmuer.Service.Interface
 		//通过用户ID分页取相册
 		IEnumerable<Album> GetAlbumsByUserID(int userID, int pageLimit, int pageIndex);
 
+		//修改相册封面
+		Message ModefiyAlbumPictureByID(int id, string picture);
+		
 		//删除相册
 		Message DeleteAlbumByID(int id);
 

@@ -20,7 +20,6 @@ namespace xmuer.Entities.Home
 		[Column("picture")]
 		public string Picture { get; set; }
 
-
 		[Column("name")]
 		public string Name { get; set; }
 	}

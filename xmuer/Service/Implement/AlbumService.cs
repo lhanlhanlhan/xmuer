@@ -117,7 +117,24 @@ namespace xmuer.Service.Implement
 			return msg;
 		}
 
+		//修改相册封面
+		public Message ModefiyAlbumPictureByID(int id, string picture)
+		{
+			var msg = new Message((int)MessageCode.OK, MessageCode.OK.GetDescription());
 
+			var upState = AlbumRepository.ModefiyAlbumPictureByID(id, picture);
+			if (upState)
+			{
+				msg.Code = (int)MessageCode.OK;
+				msg.Msg = MessageCode.OK.GetDescription();
+			}
+			else
+			{
+				msg.Code = (int)MessageCode.INTERNAL_SERVER_ERR;
+				msg.Msg = MessageCode.INTERNAL_SERVER_ERR.GetDescription();
+			}
+			return msg;
+		}
 		#endregion
 	}
 }

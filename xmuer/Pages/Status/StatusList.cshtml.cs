@@ -29,6 +29,20 @@ namespace xmuer.Pages.Status
             {
                 return Redirect("/SignIn");
             }
+            if(HttpContext.Request.Query.ContainsKey("id"))
+            {
+                try
+                {
+                    userId = int.Parse(HttpContext.Request.Query["id"]);
+                    statuses = _db.Statuses.Where(s => s.UserID == userId).Where(s => s.State == 2)
+                .ToList();
+                    return Page();
+                }
+                catch
+                {
+
+                }
+            }
             userId = Convert.ToInt32(tmp);
             statuses = _db.Statuses.Where(s => s.UserID == userId).Where(s=>s.State==2)
                 .ToList();

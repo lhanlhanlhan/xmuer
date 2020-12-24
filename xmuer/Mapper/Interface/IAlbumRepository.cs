@@ -22,6 +22,9 @@ namespace xmuer.Mapper.Interface
 		//通过用户ID取相册
 		IEnumerable<Album> GetAlbumsByUserID(int userID);
 
+		//修改相册封面
+		bool ModefiyAlbumPictureByID(int id, string picture);
+
 		//删除相册
 		bool DeleteAlbumByID(int id);
 
