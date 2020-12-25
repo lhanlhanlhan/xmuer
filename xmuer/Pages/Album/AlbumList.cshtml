@@ -56,8 +56,7 @@
                 </form>
             </div>
         </div>
-        <script>
-            $('#btnSubmit').click(function () {
+        <script>$('#btnSubmit').click(function () {
                 var albumId = document.getElementById("selAlbum")
                     .options[document.getElementById("selAlbum").selectedIndex].value;
 
@@ -84,8 +83,7 @@
                         }
                     }
                 });
-            })
-        </script>
+            })</script>
         @*新建相册框框*@
         <div class="collapse mb-3" id="createAlbumCollapse">
             <div class="card card-body">
@@ -94,10 +92,36 @@
                         <label for="selAlbum">新相册名</label>
                         <input type="text" class="form-control" id="txtAlbumName">
                     </div>
-                    <button type="button" class="btn btn-warning">创建</button>
+                    <button type="button" class="btn btn-warning" id="btnCreateAlbum">创建</button>
                 </form>
             </div>
         </div>
+        <script>
+            $('#btnCreateAlbum').click(function () {
+                var albumName = $('#txtAlbumName').val();
+                $.ajax({
+                    url: "/home/album",
+                    type: 'post',
+                    data: JSON.stringify({ Name: albumName }),
+                    dataType: "json",
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (true == data.success) {
+                            alert("创建相册成功。");
+                        } else {
+                            alert("创建相册失败，因为：" + data.msg);
+                        }
+                    },
+                    error: function (data) {
+                        if (true == data.success) {
+                            alert("创建相册成功。");
+                        } else {
+                            alert("创建相册失败，因为：" + data.msg);
+                        }
+                    }
+                });
+            })
+        </script>
         @*显示相册*@
         <div class="card-columns" style="column-count: 4">
             @{ if (Model.albums.Count > 0)
@@ -108,7 +132,7 @@
                         <div class="card">
                             <img src="@Url.Content(@album.Picture)" class="img-fluid" />
                             <div class="card-body media-body">
-                                <a href="#" class="card-title text-black-50">@album.Name</a>
+                                <a href="@Url.Content("~/Album/AlbumContent?albumId=" + album.ID)" class="card-title text-black-50">@album.Name</a>
                                 <!--<p class="card-text">这是示例相册：1</p>-->
                             </div>
                         </div>

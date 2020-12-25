@@ -1,0 +1,63 @@
+﻿@page
+@model xmuer.Pages.Album.AlbumContentModel
+@{
+    ViewData["Title"] = "我的相册";
+}
+@*相册 JS*@
+<script>$(document).ready(() => {
+        // 添加左边菜单栏选中
+        $('#mnuMyAlbum').addClass("active");
+    })</script>
+
+@*相册内容 页面*@
+<h5><a href="@Url.Content("~/Home/Album")" class="btn btn-light">&lt; 返回 </a> @Model.AlbumName</h5>
+<hr />
+
+@*相册相片*@
+<div id="links" class="links">
+    @{
+        foreach (var photo in Model.Photos)
+        {
+            <a href="@Url.Content(photo.Picture)" class="pictureButton" data-toggle="model" data-target="#modelPicture">
+                <img src="@Url.Content(photo.Picture)"
+                     class=""
+                     loading="lazy"
+                     alt="嗷，服务器开小差了"
+                     width="120"
+                     height="120" />
+            </a>
+        }
+    }
+</div>
+
+@*相册弹框图片预览*@
+<div id="modalPicture" class="modal fade" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a id="btnViewSrcPict" class="btn btn-primary">
+                    预览原图
+                </a>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="picInModal" src="#"
+                     loading="lazy"
+                     alt="嗷，服务器开小差了"
+                     class="img-fluid"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.pictureButton').click(function (event) {
+        event.preventDefault();
+        var src = $(this).attr('href');
+        $('#picInModal').attr('src', src);
+        $('#btnViewSrcPict').attr('href', src);
+        $('#modalPicture').modal();
+    });
+</script>
