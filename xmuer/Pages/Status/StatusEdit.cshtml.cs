@@ -75,33 +75,35 @@ namespace xmuer.Pages.Status
             }
             userId = Convert.ToInt32(tmp);
 
-            if (HttpContext.Request.Query.ContainsKey("new")) //ÐÂ½¨×´Ì¬
+            if (HttpContext.Request.Query.ContainsKey("new")) //ï¿½Â½ï¿½×´Ì¬
             {
-                if (HttpContext.Request.Query.ContainsKey("post")) //·¢²¼
+                if (HttpContext.Request.Query.ContainsKey("post")) //ï¿½ï¿½ï¿½ï¿½
                 {
                     Entities.Home.Status status = new Entities.Home.Status();
                     status.UserID = int.Parse(HttpContext.Session.GetString("userId"));
                     status.Content = HttpContext.Request.Form["content"];
                     status.Like = 0;
                     status.State = 2;
+                    status.Time = DateTime.Now;
                     _db.Statuses.Add(status);
                     _db.SaveChanges();
                     _db.Entry(status);
                 }
-                if (HttpContext.Request.Query.ContainsKey("draft")) //ÔÝ´æ
+                if (HttpContext.Request.Query.ContainsKey("draft")) //ï¿½Ý´ï¿½
                 {
                     Entities.Home.Status status = new Entities.Home.Status();
                     status.UserID = int.Parse(HttpContext.Session.GetString("userId"));
                     status.Content = HttpContext.Request.Form["content"];
                     status.Like = 0;
                     status.State = 1;
+                    status.Time = DateTime.Now;
                     _db.Statuses.Add(status);
                     _db.SaveChanges();
                     _db.Entry(status);
                 }
 
             }
-            if (HttpContext.Request.Query.ContainsKey("edit")) //ÐÞ¸Ä×´Ì¬ÄÚÈÝ
+            if (HttpContext.Request.Query.ContainsKey("edit")) //ï¿½Þ¸ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
             {
                 if (HttpContext.Request.Query.ContainsKey("id"))
                 {
@@ -116,6 +118,7 @@ namespace xmuer.Pages.Status
                     if (status != null)
                     {
                         status.Content = HttpContext.Request.Form["content"];
+                        status.Time = DateTime.Now;
                         _db.Statuses.Update(status);
                         _db.SaveChanges();
                     }

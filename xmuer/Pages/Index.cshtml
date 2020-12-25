@@ -13,10 +13,10 @@
         $('#mnuHome').addClass("active");
     })</script>
 
-@*新鲜事*@
+@*新鲜事及找同学*@
 <div class="row">
-    <div class="col-8">
-        <div class="card border-primary">
+    <div class="col-7">
+        <div class="card">
             <h6 class="card-header">
                 新鲜事
             </h6>
@@ -65,13 +65,72 @@
         </div>
     </div>
 
-    <div class="col-4">
-        <div class="card border-primary">
-            <h6 class="card-header">
-                找同学
-            </h6>
+    @*快捷发状态及找同学*@
+    <div class="col-5">
+        @*快捷发状态*@
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5>快捷发布你的 😄 状态</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col">
+                        <textarea class="form-control tinymce" id="status-content"
+                                  name="content"></textarea>
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <button type="button" class="btn btn-success" id="post-status" name="post-status">发布</button>
+                </div>
+            </div>
         </div>
+        @*找同学*@
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="tabSearch">
+                <li class="nav-item">
+                    <a class="nav-link active" name="college">找学院同学</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" name="major">找专业同学</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" name="department">找系同学</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" name="name">找名字</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9">
+                    <input class="form-control" id="searchField" placeholder="关键字" />
+                </div>
+                <div class="col">
+                    <button id="searchAnyone" type="button" class="btn btn-primary mb-2">给我搜</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            var active = "college"
+            @*查找同学选项卡*@
+            $('#tabSearch a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show')
+                // 获取选项
+                active = $(this).attr('name')
+            });
+            @*搜索按钮*@
+            $('#searchAnyone').click(function () {
+                // 搜索同学
+                var searchBy = $('#searchField').val();
+                window.location.href = "/home/user/" + active + "?value=" + searchBy;
+            });
+        </script>
     </div>
+    </div>
+</div>
 
 @*评论功能*@
 <script>$('.btnSubmitComment').click(function () {
@@ -131,6 +190,35 @@
                     button.children('.praiceNum').text(Number.parseInt(before) + 1);
                 } else {
                     alert("点赞失败，因为：" + data.msg);
+                }
+            }
+        });
+    });</script>
+
+@*快捷发布新鲜事功能*@
+<script>$('#post-status').click(function () {
+        // 发送新鲜事
+        var status = tinyMCE.activeEditor.getContent();
+        var formData = new FormData();
+        formData.append("content", status)
+        $.ajax({
+            url: "/home/user/status?method=post",
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (true == data.success) {
+                    location.reload();
+                } else {
+                    alert("新鲜事发布失败，因为" + data.msg);
+                }
+            },
+            error: function (data) {
+                if (true == data.success) {
+                    location.reload();
+                } else {
+                    alert("新鲜事发布失败，因为" + data.msg);
                 }
             }
         });

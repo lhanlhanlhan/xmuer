@@ -14,9 +14,7 @@
     <tbody>
         @{ foreach (var user in Model.users)
             {
-
                 <tr>
-                    
                         <th scope="row">@(Model.users.IndexOf(user)+1)</th>
                         <td>@user.userName</td>
                         <td>@Model.passwordGrade(user.password)</td>

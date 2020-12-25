@@ -62,7 +62,7 @@ namespace xmuer.Controllers
 			}
 			shareListModel.shares = shares;
 
-			return View("Pages/Index.cshtml", shareListModel);
+			return View("/Pages/Index.cshtml", shareListModel);
 		}
 
 
@@ -77,13 +77,14 @@ namespace xmuer.Controllers
 				userListModel.users.AddRange(userIE);
 			}
 
-			return View("Pages/User/UserList.cshtml", userListModel);
+			return View("/Pages/User/UserList.cshtml", userListModel);
 		}
 
 
 		[HttpGet("name")]
-		public IActionResult GetUsersByName([FromForm] string name)
+		public IActionResult GetUsersByName([FromQuery] string value)
 		{
+			string name = value;
 			UserListModel userListModel = new UserListModel();
 
 			IEnumerable<User> userIE = UserService.GetUserByName(name);
@@ -93,12 +94,13 @@ namespace xmuer.Controllers
 			}
 
 
-			return View("Pages/User/UserList.cshtml", userListModel);
+			return View("/Pages/User/UserList.cshtml", userListModel);
 		}
 
-		[HttpGet("colledge")]
-		public IActionResult GetUsersByColledge([FromForm] string colledge)
+		[HttpGet("college")]
+		public IActionResult GetUsersByColledge([FromQuery] string value)
 		{
+			string colledge = value;
 			UserListModel userListModel = new UserListModel();
 
 			IEnumerable<User> userIE = UserService.GetUserByColledge(colledge);
@@ -107,12 +109,13 @@ namespace xmuer.Controllers
 				userListModel.users.AddRange(userIE);
 			}
 
-			return View("Pages/User/UserList.cshtml", userListModel);
+			return View("/Pages/User/UserList.cshtml", userListModel);
 		}
 
 		[HttpGet("department")]
-		public IActionResult GetUsersByDepartment([FromForm] string department)
+		public IActionResult GetUsersByDepartment([FromQuery] string value)
 		{
+			string department = value;
 			UserListModel userListModel = new UserListModel();
 
 			IEnumerable<User> userIE = UserService.GetUserByDepartment(department);
@@ -121,12 +124,13 @@ namespace xmuer.Controllers
 				userListModel.users.AddRange(userIE);
 			}
 
-			return View("Pages/User/UserList.cshtml", userListModel);
+			return View("/Pages/User/UserList.cshtml", userListModel);
 		}
 
 		[HttpGet("major")]
-		public IActionResult GetUsersByMajor([FromForm] string major)
+		public IActionResult GetUsersByMajor([FromQuery] string value)
 		{
+			string major = value;
 			UserListModel userListModel = new UserListModel();
 
 			IEnumerable<User> userIE = UserService.GetUserByMajor(major);
@@ -135,7 +139,7 @@ namespace xmuer.Controllers
 				userListModel.users.AddRange(userIE);
 			}
 
-			return View("Pages/User/UserList.cshtml", userListModel);
+			return View("/Pages/User/UserList.cshtml", userListModel);
 		}
 
 		[HttpGet("studentNo")]
@@ -149,7 +153,7 @@ namespace xmuer.Controllers
 				userListModel.users.AddRange(userIE);
 			}
 
-			return View("Pages/User/UserList.cshtml", userListModel);
+			return View("/Pages/User/UserList.cshtml", userListModel);
 		}
 
 		[HttpPost("like/{id}")]
@@ -189,6 +193,64 @@ namespace xmuer.Controllers
 				return new Message((int)MessageCode.OK, MessageCode.OK.GetDescription());
 			return new Message((int)MessageCode.INTERNAL_SERVER_ERR,
 					MessageCode.INTERNAL_SERVER_ERR.GetDescription());
+		}
+
+		[HttpPost("status")]
+		public Message PublishStatus([FromQuery] int id, [FromQuery] string method, [FromForm] string content)
+        {
+			string userIdStr = HttpContext.Session.GetString("userId");
+			if (userIdStr == "" || userIdStr == null)
+			{
+				return new Message((int)MessageCode.NOT_LOGGED_IN, MessageCode.NOT_LOGGED_IN.GetDescription());
+			}
+			int userId = int.Parse(userIdStr);
+			// 保存新状态
+			if (method == "post") // 发布
+			{
+				Entities.Home.Status status = new Entities.Home.Status();
+				status.UserID = userId;
+				status.Content = content;
+				status.Like = 0;
+				status.State = 2;
+				status.Time = DateTime.Now;
+				Context.Statuses.Add(status);
+				Context.SaveChanges();
+				Context.Entry(status);
+			}
+			else
+			if (method == "draft") // 存草稿
+			{
+				Entities.Home.Status status = new Entities.Home.Status();
+				status.UserID = userId;
+				status.Content = content;
+				status.Like = 0;
+				status.State = 1;
+				status.Time = DateTime.Now;
+				Context.Statuses.Add(status);
+				Context.SaveChanges();
+				Context.Entry(status);
+			}
+			else
+			if (method == "edit") // 编辑状态
+			{
+				if (HttpContext.Request.Query.ContainsKey("id"))
+				{
+					var statusList = from s in Context.Statuses
+									 where
+									 s.ID == id &&
+									 s.UserID == userId && s.State != -1
+									 select s;
+                    Status status = statusList.First();
+					if (status != null)
+					{
+						status.Content = content;
+						status.Time = DateTime.Now;
+						Context.Statuses.Update(status);
+						Context.SaveChanges();
+					}
+				}
+			}
+			return new Message((int)MessageCode.OK, MessageCode.OK.GetDescription());
 		}
 	}
 }

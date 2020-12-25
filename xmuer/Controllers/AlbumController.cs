@@ -34,7 +34,6 @@ namespace xmuer.Controllers.Home
 		#endregion
 
 		[HttpGet]
-
 		public IActionResult GetAlbumList(int pageLimit, int pageIndex)
 		{
 

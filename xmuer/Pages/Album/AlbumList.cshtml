@@ -96,8 +96,7 @@
                 </form>
             </div>
         </div>
-        <script>
-            $('#btnCreateAlbum').click(function () {
+        <script>$('#btnCreateAlbum').click(function () {
                 var albumName = $('#txtAlbumName').val();
                 $.ajax({
                     url: "/home/album",
@@ -120,8 +119,7 @@
                         }
                     }
                 });
-            })
-        </script>
+            })</script>
         @*显示相册*@
         <div class="card-columns" style="column-count: 4">
             @{ if (Model.albums.Count > 0)
@@ -141,4 +139,28 @@
             }
         </div>
     </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-light" style="margin-left:20px" id="upPage">
+            上一页
+        </button>
+        <button type="button" class="btn btn-light" style="margin-left:20px" id="downPage">
+            下一页
+        </button>
+    </div>
 </div>
+
+<script>
+    var page = 1;
+    $('upPage').click(function () {
+        page -= 1;
+        if (page == 0) {
+            page = 1;
+            return;
+        }
+        window.location.href = "/home/album?pageLimit=10&pageIndex=" + page;
+    });
+    $('downPage').click(function () {
+        page += 1;
+        window.location.href = "/home/album?pageLimit=10&pageIndex=" + page;
+    });
+</script>
