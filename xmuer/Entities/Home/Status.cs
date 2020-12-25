@@ -26,6 +26,7 @@ namespace xmuer.Entities.Home
         [Column("like")]
         public int Like { get; set; }
 
-
+        [Column("time")]
+        public DateTime Time { get; set; }
     }
 }

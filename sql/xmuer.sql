@@ -106,12 +106,13 @@ CREATE TABLE `status`  (
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `state` tinyint(0) NULL DEFAULT NULL, 
   `like` int(0) NULL DEFAULT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-INSERT INTO `status` VALUES (1, 1, '<p>好心情</p>', 1, 2);
-INSERT INTO `status` VALUES (2, 1, '<p>哈</p>', 1, 0);
-INSERT INTO `status` VALUES (3, 1, '<h1>交互设计</h1>', 2, 8);
+INSERT INTO `status` (`id`, `user_id`, `content`, `state`, `like`) VALUES (1, 1, '<p>好心情</p>', 1, 2);
+INSERT INTO `status` (`id`, `user_id`, `content`, `state`, `like`) VALUES (2, 1, '<p>哈</p>', 1, 0);
+INSERT INTO `status` (`id`, `user_id`, `content`, `state`, `like`) VALUES (3, 1, '<h1>交互设计</h1>', 2, 8);
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (

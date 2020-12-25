@@ -53,14 +53,16 @@ namespace xmuer.Controllers
 				Share share = new Share();
 				share.ShareContent = status.Content;
 				User user = Context.Users.SingleOrDefault(s => s.ID == status.UserID);
+				share.Username = user.userName;
 				share.UserId = user.ID;
 				share.Avatar = user.Avatar;
 				share.like = status.Like;
 				share.commentCount = Context.Comments.Where(s => s.StatusID == status.ID).Count();
+				share.Time = status.Time.ToLongTimeString();
 			}
 			shareListModel.shares = shares;
 
-			return View("Pages/User/UserList.cshtml", shareListModel);
+			return View("Pages/Index.cshtml", shareListModel);
 		}
 
 

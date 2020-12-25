@@ -13,8 +13,14 @@ namespace xmuer.Entities.Home
 
 		public int  UserId { get; set; }
 
+		public string Username { get; set; }
+
 		public int like { get; set; }
 
 		public int commentCount { get; set; }
+
+		public string Time { get; set; }
+
+		public int ID { get; set; }
 	}
 }
