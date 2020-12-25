@@ -252,5 +252,12 @@ namespace xmuer.Controllers
 			}
 			return new Message((int)MessageCode.OK, MessageCode.OK.GetDescription());
 		}
+
+		[HttpPost("logout")]
+		public Message Logout()
+        {
+			HttpContext.Session.Clear();
+			return new Message((int)MessageCode.OK, MessageCode.OK.GetDescription());
+		}
 	}
 }
