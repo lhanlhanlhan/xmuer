@@ -117,6 +117,8 @@ INSERT INTO `status` (`id`, `user_id`, `content`, `state`, `like`) VALUES (3, 1,
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id` int NOT NULL,
   `status_id` int(0) NULL DEFAULT NULL,
-  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
+  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

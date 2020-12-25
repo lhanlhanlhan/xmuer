@@ -17,7 +17,13 @@ namespace xmuer.Entities.Home
 		[Column("status_id")]
 		public int StatusID { get; set; }
 
+		[Column("user_id")]
+		public int UserId { get; set; }
+
 		[Column("content")]
 		public string Content { get; set; }
+
+		[Column("time")]
+		public DateTime Time { get; set; }
 	}
 }

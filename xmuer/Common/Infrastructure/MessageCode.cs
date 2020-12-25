@@ -18,7 +18,10 @@ namespace xmuer.Common.Infrastructure
 		DATA_NOT_EMPTY = 601,
 
 		[Description("上传文件为空")]
-		UPLOAD_FILE_EMPTY = 602
+		UPLOAD_FILE_EMPTY = 602,
+
+		[Description("你还未登入")]
+		NOT_LOGGED_IN = 603
 	}
 
 	//获取描述

@@ -172,9 +172,17 @@ namespace xmuer.Controllers
 		[HttpPost("comment/{id}")]
 		public Message CommentOther(int id, [FromForm] string content)
 		{
+			string userIdStr = HttpContext.Session.GetString("userId");
+			if (userIdStr == "" || userIdStr == null)
+			{
+				return new Message((int)MessageCode.NOT_LOGGED_IN, MessageCode.NOT_LOGGED_IN.GetDescription());
+			}
+			int userId = int.Parse(userIdStr);
 			Comment comment = new Comment();
+			comment.UserId = userId;
 			comment.StatusID = id;
 			comment.Content = content;
+			comment.Time = DateTime.Now;
 			Context.Comments.Add(comment);
 			var saveState = Context.SaveChanges() > 0;
 			if (saveState)
